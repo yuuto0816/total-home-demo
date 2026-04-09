@@ -1,12 +1,22 @@
-import Link from "next/link";
+import Header from "@/src/components/sample2/Header";
+import Hero from "@/src/components/sample2/Hero";
+import Concept from "@/src/components/sample2/Concept";
+import Features from "@/src/components/sample2/Features";
+import Contact from "@/src/components/Contact"; // Reusing generic contact for now
+import Footer from "@/src/components/Footer";   // Reusing generic footer for now
 
 export default function Sample2() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#F5F5F7] text-[#1D1D1F]">
-      <h1 className="text-3xl font-serif-ja tracking-widest mb-8">Sample 2 (準備中...)</h1>
-      <Link href="/" className="text-gray-500 hover:text-black transition-colors border-b border-gray-500 pb-1">
-        &larr; トップに戻る
-      </Link>
-    </div>
+    <main className="w-full min-h-screen bg-[#FAF8F5] text-[#5C4D4D] selection:bg-[#D98A6C] selection:text-white">
+      <Header />
+      <Hero />
+      <Concept />
+      <Features />
+      <div className="bg-[#FAF8F5] pt-12">
+          {/* Using main Contact and Footer, overridden with container style somewhat */}
+          <Contact />
+          <Footer />
+      </div>
+    </main>
   );
 }
