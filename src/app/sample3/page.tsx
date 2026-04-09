@@ -66,18 +66,18 @@ export default function Sample3() {
 
       {/* Bento Grid Features */}
       <section className="py-24 px-6 max-w-7xl mx-auto">
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">圧倒的なパフォーマンスを、<br />美しいデザインに凝縮。</h2>
-          <p className="text-slate-500 max-w-2xl text-lg">必要なすべての機能が、この一つのシステムに統合されています。</p>
+        <div className="mb-16 text-center">
+          <h2 className="text-4xl font-bold tracking-tight mb-4">圧倒的なパフォーマンスを、<br />美しいデザインに凝縮。</h2>
+          <p className="text-slate-500 max-w-2xl mx-auto text-lg">必要なすべての機能が、この一つのシステムに統合されています。</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px] mb-6">
           {/* Card 1: Large */}
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="md:col-span-2 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm relative overflow-hidden group">
             <div className="relative z-10 w-1/2">
               <Shield className="text-blue-500 mb-6" size={40} />
               <h3 className="text-2xl font-bold mb-3">医療現場レベルの安全性</h3>
-              <p className="text-slate-500 leading-relaxed">バクテリア、塩素、不純物を99.9%除去する特殊多層フィルターを搭載。</p>
+              <p className="text-slate-500 leading-relaxed">バクテリア、塩素、不純物を99.9%除去する特殊多層フィルターを搭載。NASAも採用するROろ過技術の応用で、限りなくピュアな水を生成します。</p>
             </div>
             <div className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-blue-50 to-transparent"></div>
           </motion.div>
@@ -86,7 +86,7 @@ export default function Sample3() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} viewport={{ once: true }} className="bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden">
             <CheckCircle className="text-emerald-400 mb-6" size={40} />
             <h3 className="text-2xl font-bold mb-3">1年間<br/>メンテ不要</h3>
-            <p className="text-slate-400 mt-auto absolute bottom-8">大容量カートリッジ設計</p>
+            <p className="text-slate-400 mt-auto absolute bottom-8">特許取得の大容量カートリッジ設計</p>
           </motion.div>
 
           {/* Card 3: Small Image */}
@@ -99,11 +99,60 @@ export default function Sample3() {
           {/* Card 4: Wide Span */}
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} viewport={{ once: true }} className="md:col-span-2 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-3xl p-8 text-white flex flex-col justify-center items-start">
             <h3 className="text-3xl font-bold mb-4">月々たったのペットボトル数本分</h3>
-            <p className="text-blue-100 text-lg mb-6">初期費用無料プランもご用意。ランニングコストを抑えながら、圧倒的な水質改善を実現します。</p>
+            <p className="text-blue-100 text-lg mb-6">初期費用無料プランもご用意。ランニングコストを抑えながら、圧倒的な水質改善を実現します。家族の人数に合わせた3つのプランから選択可能。</p>
             <button className="bg-white text-blue-600 px-6 py-2 rounded-full font-bold text-sm hover:shadow-lg transition">料金プランを見る</button>
           </motion.div>
         </div>
       </section>
+
+      {/* How it works Section */}
+      <section className="py-24 bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-blue-600 font-bold tracking-widest text-sm uppercase">Architecture</span>
+            <h2 className="text-4xl font-bold tracking-tight mt-4 mb-4">家中の水が、根元から変わる仕組み。</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+             {[
+               { no: "01", title: "メーター直結型設計", desc: "水道メーターの直後に設置するため、キッチン、バスルーム、洗濯機など、すべての蛇口から浄水が出ます。" },
+               { no: "02", title: "3段階浄化プロセス", desc: "粗ゴミ除去、カーボン吸着、超微細フィルターによる3ステップで、においや化学物質を完全に無害化します。" },
+               { no: "03", title: "いつでもスマート管理", desc: "独自のIoTセンサーで水の使用量とフィルター寿命を計測し、専用アプリに交換時期を自動でプッシュ通知します。" },
+             ].map((step, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="p-8 bg-slate-50 rounded-2xl">
+                  <div className="text-5xl font-extrabold text-blue-100 mb-6">{step.no}</div>
+                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                  <p className="text-slate-600 leading-relaxed">{step.desc}</p>
+                </motion.div>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 max-w-7xl mx-auto px-6">
+        <h2 className="text-3xl font-bold tracking-tight mb-12 text-center">導入いただいたお客様の声</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+           <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+             <div className="flex text-yellow-400 mb-4">★★★★★</div>
+             <p className="text-slate-700 text-lg mb-6 tracking-wide leading-relaxed">「アトピー肌の子どものために導入しました。お風呂上がりのかゆみが減り、シャワーのピリピリ感も全くなくなりました。もっと早く出会いたかったです。」</p>
+             <p className="font-bold text-slate-900">— 30代 家族4人暮らし</p>
+           </div>
+           <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+             <div className="flex text-yellow-400 mb-4">★★★★★</div>
+             <p className="text-slate-700 text-lg mb-6 tracking-wide leading-relaxed">「料理の味が格段に上がります！出汁の出方が今までと全然違い、コーヒーもまろやかに。ミネラルウォーターを買う手間とゴミが減ったのも最高です。」</p>
+             <p className="font-bold text-slate-900">— 40代 夫婦2人暮らし</p>
+           </div>
+        </div>
+      </section>
+
+      {/* CTA Footer */}
+      <footer className="bg-slate-900 text-white py-24 px-6 text-center">
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">水が変われば、暮らしが変わる。</h2>
+        <p className="text-slate-400 mb-10 text-lg max-w-2xl mx-auto">今なら初期費用0円でスタートできるキャンペーンを実施中。お使いのスマートフォンから1分でシミュレーションできます。</p>
+        <button className="bg-blue-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-blue-500 transition shadow-xl shadow-blue-900/20">
+          無料で資料請求・お見積り
+        </button>
+      </footer>
     </main>
   );
 }
