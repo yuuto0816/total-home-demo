@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOTAL HOME JAPAN | 名刺デザイン3案</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', '"Noto Sans JP"', 'sans-serif'],
+                        serif: ['"Shippori Mincho"', '"Yu Mincho"', 'serif'],
+                        display: ['"Cinzel"', '"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background-color: #E5E7EB;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 名刺の基本サイズ（455px x 275px = 黄金比 91mm x 55mm の約5倍） */
+        .b-card {
+            width: 455px;
+            height: 275px;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            background-color: white;
+        }
+
+        /* 印刷設定 */
+        @media print {
+            body { background-color: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none; }
+            .b-card { width: 91mm !important; height: 55mm !important; box-shadow: none !important; border: 1px solid #ddd; margin-bottom: 5mm; }
+        }
+    </style>
+</head>
+<body class="py-12 px-4 flex flex-col items-center gap-24 font-sans">
+
+    <div class="text-center no-print max-w-2xl">
+        <h1 class="text-3xl font-black text-gray-800 mb-4">名刺デザイン コンセプト3案</h1>
+        <p class="text-gray-600 text-sm leading-loose">
+            CanvaやIllustratorでの本制作に向けた、3つの異なるデザイン方向性です。<br>
+            お好みのスタイルや、組み合わせたい要素をご検討ください。
+        </p>
+    </div>
+
+    <div class="flex flex-col gap-4">
+        <div class="text-center mb-2 no-print">
+            <h2 class="text-xl font-bold text-gray-800">Concept A: Executive Dark</h2>
+            <p class="text-xs text-gray-500 mt-1">※イメージです</p>
+        </div>
+        <div class="flex flex-col xl:flex-row gap-8 items-center">
+            
+            <div class="b-card shadow-2xl bg-[#0a0a0a] text-white border border-gray-800">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#C4A052] to-[#8A6D3B]"></div>
+                <div class="absolute bottom-6 right-6 opacity-5 pointer-events-none">
+                    <i data-lucide="shield-check" class="w-48 h-48 text-[#C4A052]"></i>
+                </div>
+
+                <div class="p-8 h-full flex flex-col justify-between relative z-10">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-[10px] tracking-[0.3em] text-[#C4A052] font-display uppercase mb-1">Total Home Japan Co.,Ltd.</p>
+                            <h3 class="font-serif text-lg tracking-[0.2em] font-bold">株式会社トータルホームジャパン</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <p class="text-[10px] text-[#C4A052] font-bold tracking-[0.3em] mb-2 uppercase">代表取締役</p>
+                            <div class="flex items-baseline gap-3 mb-1">
+                                <p class="text-3xl font-serif tracking-[0.3em] font-bold whitespace-nowrap">小林 恒誠</p>
+                            </div>
+                            <p class="text-[9px] font-sans text-gray-400 tracking-[0.2em] uppercase font-light">Kosei Kobayashi</p>
+                        </div>
+                        
+                        <div class="text-[8px] text-gray-400 space-y-1.5 text-right tracking-widest font-light">
+                            <p class="text-[10px] text-white font-bold mb-3 font-sans tracking-widest">
+                                M. 080-7310-0936<br>
+                                E. k.kobayashi@total-home-japan.com
+                            </p>
+                            <p><span class="text-[#C4A052] mr-1">東京</span>東京都港区青山一丁目3-1 アールキューブ青山3F</p>
+                            <p><span class="text-[#C4A052] mr-1">熊本</span>熊本県熊本市東区御領6-8-13</p>
+                            <p><span class="text-[#C4A052] mr-1">福岡</span>福岡県福岡市早良区四箇6-25-7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="b-card shadow-2xl bg-[#111111] text-white border border-gray-800 flex flex-col justify-center items-center text-center relative">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(196,160,82,0.1)_0%,transparent_70%)]"></div>
+                
+                <div class="relative z-10">
+                    <i data-lucide="shield-check" class="w-10 h-10 text-[#C4A052] mx-auto mb-4 stroke-[1]"></i>
+                    <p class="text-sm font-serif tracking-[0.4em] leading-loose mb-6">
+                        全国の住まいの安心を支え、<br>暮らしの快適をつくる。
+                    </p>
+                    <div class="flex gap-4 text-[9px] tracking-[0.3em] text-[#C4A052] mb-8 uppercase justify-center">
+                        <span>住宅設備</span> <span class="opacity-50">|</span>
+                        <span>浄水・オール電化</span> <span class="opacity-50">|</span>
+                        <span>安心サポート</span>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 flex gap-6 text-[10px] tracking-widest opacity-60">
+                        <span>三菱電機</span><span>CORONA</span><span>HITACHI</span><span>DAIKIN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-4">
+        <div class="text-center mb-2 no-print">
+            <h2 class="text-xl font-bold text-gray-800">Concept B: Modern Tech</h2>
+            <p class="text-xs text-gray-500 mt-1">※イメージです</p>
+        </div>
+        <div class="flex flex-col xl:flex-row gap-8 items-center">
+            
+            <div class="b-card shadow-2xl bg-[#03045E] text-white overflow-hidden relative">
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-[#00B4D8] rounded-full blur-[80px] opacity-60"></div>
+                <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-[#90E0EF] rounded-full blur-[80px] opacity-30"></div>
+
+                <div class="absolute inset-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 p-6 flex flex-col justify-between z-10">
+                    
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <i data-lucide="waves" class="w-4 h-4 text-[#00B4D8]"></i>
+                                <span class="font-bold tracking-[0.2em] text-sm uppercase">Total Home Japan</span>
+                            </div>
+                            <p class="text-[8px] text-gray-300 tracking-widest">株式会社トータルホームジャパン</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <p class="text-[10px] text-[#00B4D8] font-bold tracking-widest mb-1 uppercase">福岡支店 営業統括</p>
+                            <p class="text-3xl font-sans font-black tracking-widest mb-1">北野 皓冶</p>
+                            <p class="text-[9px] font-sans text-gray-300 tracking-[0.2em] uppercase">Koji Kitano</p>
+                        </div>
+                        
+                        <div class="text-[8px] text-gray-300 space-y-1.5 text-right tracking-wider">
+                            <p class="text-[11px] text-white font-bold tracking-widest flex items-center justify-end gap-2 mb-1">
+                                080-7641-1579
+                            </p>
+                            <p class="text-[9px] text-[#00B4D8] mb-3">k.kitano@total-home-japan.com</p>
+                            
+                            <p><span class="opacity-50 mr-1">東京本社</span> 東京都港区青山一丁目3-1</p>
+                            <p><span class="opacity-50 mr-1">熊本営業所</span> 熊本県熊本市東区御領6-8-13</p>
+                            <p class="text-white font-bold"><span class="text-[#00B4D8] mr-1">福岡営業所</span> 福岡県福岡市早良区四箇6-25-7</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="b-card shadow-2xl bg-[#03045E] text-white relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#00B4D8 1px, transparent 1px), linear-gradient(90deg, #00B4D8 1px, transparent 1px); background-size: 20px 20px;"></div>
+                
+                <div class="absolute inset-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 flex flex-col justify-center items-center text-center p-6 z-10">
+                    <p class="text-[10px] tracking-[0.4em] text-[#00B4D8] mb-3 font-bold uppercase">Business Domain</p>
+                    <p class="text-sm font-sans font-bold tracking-[0.2em] leading-relaxed mb-6">
+                        全国の住まいの安心を支え、<br>暮らしの快適をつくる。
+                    </p>
+                    <div class="flex gap-3 text-[10px] tracking-widest text-white mb-6">
+                        <span class="bg-white/10 px-3 py-1 rounded-full border border-white/20">住宅設備事業</span>
+                        <span class="bg-white/10 px-3 py-1 rounded-full border border-white/20">浄水・オール電化</span>
+                        <span class="bg-white/10 px-3 py-1 rounded-full border border-white/20">安心サポート</span>
+                    </div>
+                    <div class="w-full flex justify-between items-center px-4 pt-4 border-t border-white/10 text-[9px] font-bold tracking-widest opacity-80">
+                        <span>MITSUBISHI</span><span>CORONA</span><span>HITACHI</span><span>DAIKIN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-4">
+        <div class="text-center mb-2 no-print">
+            <h2 class="text-xl font-bold text-gray-800">Concept C: Minimal Editorial</h2>
+            <p class="text-xs text-gray-500 mt-1">※イメージです</p>
+        </div>
+        <div class="flex flex-col xl:flex-row gap-8 items-center mb-20">
+            
+            <div class="b-card shadow-2xl bg-white text-gray-900 border border-gray-200">
+                <div class="absolute -right-10 -top-10 font-black text-9xl text-gray-50 opacity-50 pointer-events-none select-none">
+                    THJ
+                </div>
+
+                <div class="p-8 h-full flex flex-col justify-between relative z-10">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-sans font-black text-xl tracking-tighter uppercase">Total Home Japan</h3>
+                            <p class="text-[8px] text-gray-400 tracking-widest mt-1">株式会社トータルホームジャパン</p>
+                        </div>
+                        <div class="text-[8px] text-gray-500 space-y-1 text-right tracking-wider">
+                            <p>東京本社 | 東京都港区青山1-3-1</p>
+                            <p>熊本営業所 | 熊本県熊本市東区御領6-8-13</p>
+                            <p>福岡営業所 | 福岡県福岡市早良区四箇6-25-7</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-end border-t-2 border-black pt-4">
+                        <div>
+                            <p class="text-[10px] font-bold tracking-widest mb-1">営業</p>
+                            <div class="flex items-end gap-3">
+                                <p class="text-3xl font-sans font-black tracking-widest leading-none">坂井 仁</p>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Jin Sakai</p>
+                            </div>
+                        </div>
+                        
+                        <div class="text-[9px] font-bold text-right tracking-widest space-y-1">
+                            <p>T. 080-6427-2793</p>
+                            <p>E. j.sakai@total-home-japan.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="b-card shadow-2xl bg-gray-50 text-gray-900 border border-gray-200 flex">
+                <div class="w-1/3 bg-black text-white p-6 flex flex-col justify-center items-center text-center">
+                    <i data-lucide="droplets" class="w-8 h-8 mb-4 stroke-[1.5]"></i>
+                    <p class="text-[10px] tracking-widest uppercase font-bold mb-4">Brands</p>
+                    <div class="space-y-3 text-[8px] tracking-widest opacity-80 uppercase">
+                        <p>Mitsubishi</p>
+                        <p>Corona</p>
+                        <p>Hitachi</p>
+                        <p>Daikin</p>
+                    </div>
+                </div>
+                
+                <div class="w-2/3 p-8 flex flex-col justify-center bg-white">
+                    <p class="text-[14px] font-black tracking-[0.2em] leading-loose mb-6">
+                        全国の住まいの安心を支え、<br>暮らしの快適をつくる。
+                    </p>
+                    <div class="space-y-2 text-[9px] font-bold tracking-widest text-gray-500">
+                        <p class="flex items-center gap-2"><span class="w-1 h-1 bg-black rounded-full"></span> 住宅設備事業</p>
+                        <p class="flex items-center gap-2"><span class="w-1 h-1 bg-black rounded-full"></span> 浄水・オール電化ソリューション</p>
+                        <p class="flex items-center gap-2"><span class="w-1 h-1 bg-black rounded-full"></span> 住まいの安心サポート事業</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
