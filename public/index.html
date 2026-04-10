@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUA BOOST | Design Showcase</title>
+    
+    <!-- Tailwind CSSの読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#050505',      /* 深淵なる漆黒 */
+                        onyx: '#111111',          /* 少し明るい黒 */
+                        titanium: '#8E8E93',      /* 金属的なグレー */
+                        liquidCyan: '#00D2FF',    /* 発光するようなシアン */
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', '"Noto Sans JP"', 'sans-serif'],
+                        display: ['"Cinzel"', '"Yu Mincho"', 'serif'], /* 芸術性を高める見出しフォント */
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fontsの読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- アイコンライブラリ（Lucide） -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- カスタムCSS（高度なアニメーション、グラスモーフィズム、Bento Grid） -->
+    <style>
+        body {
+            background-color: #050505;
+            color: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* 背景でゆっくりと動く光のオーブ */
+        .ambient-light {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+            animation: float-ambient 20s ease-in-out infinite alternate;
+        }
+        .light-1 {
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, #00D2FF, transparent 70%);
+            top: -200px; left: -200px;
+        }
+        .light-2 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, #4A00E0, transparent 70%);
+            bottom: -100px; right: -100px;
+            animation-delay: -5s;
+        }
+        .light-3 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, #8E2DE2, transparent 70%);
+            top: 40%; left: 30%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float-ambient {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 50px) scale(1.1); }
+            100% { transform: translate(-50px, -20px) scale(0.9); }
+        }
+
+        /* ギャラリーカードのグラスモーフィズム設計 */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 210, 255, 0.1);
+        }
+
+        /* 画像のホバーズーム */
+        .card-img-wrap {
+            overflow: hidden;
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+        }
+        .glass-card:hover .card-img {
+            transform: scale(1.08);
+            opacity: 0.7;
+        }
+        
+        /* 10個目のカード（至高）の特別エフェクト */
+        .card-ultimate {
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            box-shadow: inset 0 0 20px rgba(0, 210, 255, 0.05);
+        }
+        .card-ultimate:hover {
+            border-color: rgba(0, 210, 255, 0.5);
+            box-shadow: 0 0 60px rgba(0, 210, 255, 0.2), inset 0 0 30px rgba(0, 210, 255, 0.1);
+        }
+
+        /* テキストのグラデーション */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(135deg, #FFFFFF 0%, #8E8E93 100%);
+        }
+
+        /* スクロール出現アニメーション */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* コンテンツを画像の上に重ねるための設定 */
+        .card-content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="selection:bg-liquidCyan selection:text-obsidian">
+
+    <!-- アンビエントライト（背景装飾） -->
+    <div class="ambient-light light-1"></div>
+    <div class="ambient-light light-2"></div>
+    <div class="ambient-light light-3"></div>
+
+    <!-- ミニマルなヘッダー -->
+    <header class="w-full py-8 px-6 md:px-12 flex justify-between items-center absolute top-0 left-0 z-50 mix-blend-difference">
+        <div class="font-sans font-light tracking-[0.4em] text-xs uppercase flex items-center gap-3">
+            <i data-lucide="aperture" class="w-5 h-5 text-white"></i>
+            Aqua Boost
+        </div>
+        <div class="font-sans font-light text-[10px] tracking-[0.3em] text-white/50 uppercase">
+            Design Showcase
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="relative w-full min-h-[60vh] md:min-h-[80vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-20 z-10">
+        <p class="font-sans font-light text-[10px] md:text-xs tracking-[0.5em] text-liquidCyan uppercase mb-6 reveal delay-[100ms]">
+            10 Visions of Pure Water
+        </p>
+        <h1 class="font-display font-semibold text-5xl md:text-7xl lg:text-[7rem] tracking-tight leading-none text-gradient mb-8 reveal delay-[200ms]">
+            The Vault of<br>Excellence
+        </h1>
+        <p class="font-sans font-light text-titanium text-sm md:text-base leading-loose tracking-[0.2em] max-w-3xl mx-auto reveal delay-[300ms]">
+            コーポレートサイトとしてご提案する、10の異なるサイトです。<br>
+            カードをタップして、各デザインを体験してください！
+        </p>
+    </section>
+
+    <!-- メインギャラリー（Bento Gridレイアウト） -->
+    <section class="w-full max-w-[1600px] mx-auto px-6 pb-48 z-10 relative">
+        <!-- 4列のグリッド。大・小のカードをパズルのように配置 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[300px]">
+
+            <!-- Pattern 01: エディトリアル（大サイズ: 2列x2行） -->
+            <a href="sample1.html" class="glass-card rounded-[2rem] md:col-span-2 md:row-span-2 group reveal">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1500&auto=format&fit=crop" alt="エディトリアル" class="card-img grayscale">
+                </div>
+                <div class="card-content">
+                    <div class="mt-auto">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="font-sans font-light text-[10px] tracking-[0.3em] uppercase border border-white/20 px-3 py-1 rounded-full backdrop-blur-md">01 Luxury</span>
+                        </div>
+                        <h2 class="font-sans font-medium text-3xl md:text-4xl text-white mb-3 tracking-widest">高級感・エディトリアル</h2>
+                        <p class="font-sans font-light text-titanium text-sm tracking-wider leading-relaxed max-w-md">モノトーンと余白を極限まで活かし、洗練された雑誌のようなモダンな世界観を構築。</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pattern 02: ファミリー（1列x1行） -->
+            <a href="sample2.html" class="glass-card rounded-[2rem] group reveal">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="ファミリー" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="mt-auto">
+                        <span class="inline-block font-sans font-light text-[10px] tracking-[0.3em] uppercase text-white/50 mb-2">02 Family</span>
+                        <h2 class="font-sans font-medium text-xl text-white mb-2 tracking-widest">温かみ・ファミリー</h2>
+                        <p class="font-sans font-light text-titanium text-xs tracking-wider leading-relaxed">アースカラーと角丸を多用した優しいデザイン。</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pattern 03: SaaS（1列x1行） -->
+            <a href="sample3.html" class="glass-card rounded-[2rem] group reveal">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?q=80&w=800&auto=format&fit=crop" alt="SaaS" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="mt-auto">
+                        <span class="inline-block font-sans font-light text-[10px] tracking-[0.3em] uppercase text-liquidCyan mb-2">03 Technology</span>
+                        <h2 class="font-sans font-medium text-xl text-white mb-2 tracking-widest">先進的テクノロジー</h2>
+                        <p class="font-sans font-light text-titanium text-xs tracking-wider leading-relaxed">Bento Gridを採用した信頼のBtoB向け構造。</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pattern 04: シネマティック（横長: 2列x1行） -->
+            <a href="sample4.html" class="glass-card rounded-[2rem] md:col-span-2 group reveal">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1436891620584-47fd0e565afb?q=80&w=1500&auto=format&fit=crop" alt="シネマティック" class="card-img grayscale">
+                </div>
+                <div class="card-content justify-center items-center text-center">
+                    <span class="font-display italic text-4xl text-white/30 absolute">Cinematic</span>
+                    <div class="relative z-10">
+                        <span class="inline-block font-sans font-light text-[10px] tracking-[0.3em] uppercase text-white/70 mb-3 border border-white/20 px-3 py-1 rounded-full">04 Storytelling</span>
+                        <h2 class="font-sans font-medium text-2xl text-white mb-2 tracking-widest">シネマティック</h2>
+                        <p class="font-sans font-light text-titanium text-xs tracking-wider">ダークトーンで物語に深く引き込む、没入感の高い構成。</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pattern 05: ミニマリズム（縦長: 1列x2行） -->
+            <a href="sample5.html" class="glass-card rounded-[2rem] md:row-span-2 group reveal">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=800&auto=format&fit=crop" alt="ミニマリズム" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="mt-auto">
+                        <span class="inline-block font-sans font-light text-[10px] tracking-[0.3em] uppercase text-white/50 mb-2">05 Minimal</span>
+                        <h2 class="font-sans font-medium text-xl text-white mb-4 tracking-widest">クリア<br>ミニマリズム</h2>
+                        <p class="font-sans font-light text-titanium text-xs tracking-wider leading-relaxed">グラスモーフィズムと浮遊感を取り入れた究極の透明感。</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pattern 06: オーガニック（1列x1行） -->
+            <a href="sample6.html" class="glass-card rounded-[2rem] group reveal">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop" alt="オーガニック" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="mt-auto">
+                        <span class="inline-block font-sans font-light text-[10px] tracking-[0.3em] uppercase text-green-400 mb-2">06 Organic</span>
+                        <h2 class="font-sans font-medium text-xl text-white mb-2 tracking-widest">ネイチャー</h2>
+                        <p class="font-sans font-light text-titanium text-xs tracking-wider leading-relaxed">自然との調和を表現する有機的なシェイプ。</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pattern 07: 和モダン（横長: 2列x1行） -->
+            <a href="sample7.html" class="glass-card rounded-[2rem] md:col-span-2 group reveal">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1500&auto=format&fit=crop" alt="和モダン" class="card-img grayscale">
+                </div>
+                <div class="card-content flex-row items-end justify-between">
+                    <div>
+                        <span class="inline-block font-sans font-light text-[10px] tracking-[0.3em] uppercase text-[#C4A052] mb-2">07 Japanese Modern</span>
+                        <h2 class="font-sans font-medium text-2xl text-white mb-2 tracking-widest">和風ラグジュアリー</h2>
+                        <p class="font-sans font-light text-titanium text-xs tracking-wider">縦書きの明朝体で旅館のような品格とおもてなしを表現。</p>
+                    </div>
+                    <div class="hidden md:block opacity-20">
+                        <p class="font-serif text-3xl" style="writing-mode: vertical-rl;">和モダン</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pattern 08: ダイナミック（1列x1行） -->
+            <a href="sample8.html" class="glass-card rounded-[2rem] group reveal">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=800&auto=format&fit=crop" alt="ダイナミック" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="mt-auto">
+                        <span class="inline-block font-sans font-light text-[10px] tracking-[0.3em] uppercase text-blue-400 mb-2">08 Dynamic</span>
+                        <h2 class="font-sans font-medium text-xl text-white mb-2 tracking-widest">アクアティック</h2>
+                        <p class="font-sans font-light text-titanium text-xs tracking-wider leading-relaxed">斜めのカッティングで製品のパワーを訴求。</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pattern 09: エレガント（1列x1行） -->
+            <a href="sample9.html" class="glass-card rounded-[2rem] group reveal">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop" alt="エレガント" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="mt-auto">
+                        <span class="inline-block font-sans font-light text-[10px] tracking-[0.3em] uppercase text-pink-300 mb-2">09 Beauty</span>
+                        <h2 class="font-sans font-medium text-xl text-white mb-2 tracking-widest">エレガント</h2>
+                        <p class="font-sans font-light text-titanium text-xs tracking-wider leading-relaxed">コスメブランドのように美容へのメリットを強調。</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pattern 10: 究極（大サイズ: 2列x2行。特別なハイライト） -->
+            <a href="sample10.html" class="glass-card card-ultimate rounded-[2rem] md:col-span-2 md:row-span-2 group reveal">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1500&auto=format&fit=crop" alt="至高の静寂と革新" class="card-img opacity-20 grayscale group-hover:opacity-40">
+                </div>
+                <div class="card-content flex-col justify-center items-center text-center">
+                    <i data-lucide="aperture" class="w-16 h-16 text-liquidCyan mb-8 transform group-hover:rotate-90 transition-transform duration-1000 stroke-[1]"></i>
+                    <span class="font-sans font-light text-[10px] tracking-[0.5em] uppercase text-liquidCyan mb-4 border border-liquidCyan/30 px-4 py-1.5 rounded-full">Final Pattern 10</span>
+                    <h2 class="font-display font-semibold text-4xl md:text-5xl text-white mb-6 tracking-widest">至高の静寂と革新</h2>
+                    <p class="font-sans font-light text-titanium text-sm md:text-base tracking-widest leading-relaxed max-w-md">
+                        漆黒とシアンの輝き。<br>圧倒的な技術力と究極のミニマリズムを融合した、芸術とビジネスの完璧なる到達点。
+                    </p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- 洗練されたフッター -->
+    <footer class="w-full py-16 border-t border-white/5 relative z-10 text-center">
+        <i data-lucide="droplets" class="w-6 h-6 text-white/20 mx-auto mb-6 stroke-[1]"></i>
+        <p class="font-sans font-light text-[9px] tracking-[0.4em] text-titanium/60 uppercase">
+            &copy; 2026 Aqua Boost Design Excellence. All Rights Reserved.
+        </p>
+    </footer>
+
+    <!-- スクリプト制御 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Lucideアイコンの初期化
+            lucide.createIcons();
+
+            // フェードアップアニメーション（スクロール追従）
+            const revealElements = document.querySelectorAll(".reveal");
+            
+            const revealOptions = {
+                root: null,
+                rootMargin: "0px 0px -50px 0px",
+                threshold: 0.1
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); // 一度表示したら監視解除
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach((element, index) => {
+                // グリッドの表示順に合わせてわずかに遅延を付与（より美しい出現へ）
+                element.style.transitionDelay = `${(index % 4) * 0.1}s`;
+                revealObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
