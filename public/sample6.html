@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUA BOOST | 自然のサイクルを、家の中へ。</title>
+    
+    <!-- Tailwind CSSの読み込みとカスタム設定 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forestGreen: '#2D4A22',   /* 深みのある森の緑 */
+                        leafGreen: '#6B8E23',     /* 葉のような柔らかな緑 */
+                        sandBeige: '#F4F1EA',     /* 砂や土を感じさせる背景色 */
+                        earthBrown: '#4A3B32',    /* テキスト用の温かいこげ茶色 */
+                        clayWhite: '#FCFBF9',     /* 明るい部分の背景色 */
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        serif: ['"Shippori Mincho"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fontsの読み込み（温かみのあるゴシック体と明朝体） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- アイコンライブラリ（Lucide） -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- カスタムCSS（オーガニックな形状やアニメーション） -->
+    <style>
+        body {
+            background-color: #F4F1EA;
+            color: #4A3B32;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 自然界を模した不規則な曲線（オーガニックシェイプ） */
+        .organic-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .organic-shape-2 {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+
+        /* ゆっくりと形が変わるアニメーション */
+        @keyframes morphing {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            50% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+        }
+        .animate-morphing {
+            animation: morphing 10s ease-in-out infinite;
+        }
+
+        /* スクロール時のフェードアップアニメーション初期状態 */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.25, 0.1, 0.25, 1), transform 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        /* スクロールして画面に入った状態 */
+        .fade-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 無限スクロール用 */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 40s linear infinite;
+        }
+
+        /* パララックス背景用のクラス */
+        .bg-parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="selection:bg-forestGreen selection:text-white overflow-x-hidden">
+
+    <!-- ナチュラルなヘッダー -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 px-6 py-6 text-clayWhite">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="font-sans font-light text-sm tracking-[0.3em] uppercase flex items-center gap-2 hover:opacity-70 transition-opacity">
+                <i data-lucide="leaf" class="w-5 h-5 stroke-[1.5]"></i>
+                Aqua Boost
+            </a>
+            
+            <nav class="hidden md:flex gap-10 font-sans font-light tracking-widest text-xs uppercase">
+                <a href="#concept" class="hover:opacity-70 transition-opacity">Concept</a>
+                <a href="#features" class="hover:opacity-70 transition-opacity">Nature</a>
+                <a href="#contact" class="hover:opacity-70 transition-opacity">Contact</a>
+            </nav>
+
+            <button class="md:hidden focus:outline-none hover:opacity-70 transition-opacity">
+                <i data-lucide="menu" class="w-6 h-6 stroke-[1]"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション（深い森と水のイメージ） -->
+    <section class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden">
+        <!-- 固定背景画像 -->
+        <div class="absolute inset-0 z-0 bg-parallax" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2000&auto=format&fit=crop');"></div>
+        
+        <!-- 画像を落ち着かせるためのオーバーレイ -->
+        <div class="absolute inset-0 z-0 bg-forestGreen/40 mix-blend-multiply"></div>
+        <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-sandBeige"></div>
+
+        <div class="relative z-10 text-center px-4 flex flex-col items-center pt-20">
+            <p class="fade-up font-sans font-light text-xs md:text-sm tracking-[0.4em] uppercase text-sandBeige mb-6 drop-shadow-md">
+                Harmony with Nature
+            </p>
+            <h1 class="fade-up font-serif text-4xl md:text-6xl lg:text-7xl tracking-widest text-clayWhite mb-8 leading-[1.4] drop-shadow-lg" style="transition-delay: 0.2s;">
+                森が育んだ水を、<br>
+                そのままあなたの暮らしへ。
+            </h1>
+            <p class="fade-up font-serif text-base md:text-lg tracking-widest leading-loose text-sandBeige max-w-xl mx-auto drop-shadow-md" style="transition-delay: 0.4s;">
+                化学物質を取り除き、自然本来の力を取り戻す。<br>
+                人と環境に優しい、これからの浄水システム。
+            </p>
+        </div>
+    </section>
+
+    <!-- コンセプト（オーガニックなシェイプと余白） -->
+    <section id="concept" class="py-32 px-6 md:px-12 bg-sandBeige relative overflow-hidden">
+        <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+            
+            <div class="order-2 md:order-1 fade-up">
+                <h2 class="font-sans font-light text-xs tracking-[0.4em] uppercase text-leafGreen mb-6">Our Concept</h2>
+                <h3 class="font-serif text-3xl md:text-4xl leading-[1.6] tracking-widest text-earthBrown mb-10">
+                    自然のサイクルを、<br>家の中へ。
+                </h3>
+                <div class="font-sans font-light text-base leading-loose tracking-wider text-earthBrown/80 space-y-6">
+                    <p>
+                        地球の長い歴史の中で、森や土は天然のフィルターとして水を浄化し、生命を育んできました。
+                    </p>
+                    <p>
+                        AQUA BOOSTは、その自然の浄化プロセスを最先端のテクノロジーで再現します。キッチンから出る水だけでなく、お風呂や洗面所の水まで、家中のすべての水を大自然の湧き水のように清らかに。
+                    </p>
+                    <p>
+                        不自然なものを加えず、ただ取り除く。それが、私たちが考える本当の豊かさです。
+                    </p>
+                </div>
+            </div>
+
+            <div class="order-1 md:order-2 fade-up" style="transition-delay: 0.2s;">
+                <div class="relative w-full aspect-square flex justify-center items-center">
+                    <!-- 背景の装飾用カラーブロック -->
+                    <div class="absolute w-[80%] h-[80%] bg-forestGreen/10 organic-shape animate-morphing z-0"></div>
+                    
+                    <!-- メイン画像（オーガニックシェイプ切り抜き） -->
+                    <div class="relative w-[90%] h-[90%] organic-shape-2 overflow-hidden shadow-2xl z-10 transition-transform duration-1000 hover:scale-[1.02]">
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1500&auto=format&fit=crop" alt="清らかな水" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- フィーチャー（自然との調和） -->
+    <section id="features" class="py-32 px-6 md:px-12 bg-clayWhite relative">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="text-center mb-24 fade-up">
+                <i data-lucide="leaf" class="w-8 h-8 stroke-[1] text-leafGreen mx-auto mb-6"></i>
+                <h2 class="font-serif text-3xl md:text-4xl tracking-widest text-earthBrown">自然と調和する、3つの優しさ</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12">
+                
+                <!-- 特徴 1 -->
+                <div class="flex flex-col items-center text-center fade-up">
+                    <div class="w-48 h-48 rounded-full overflow-hidden mb-8 shadow-lg border-4 border-sandBeige">
+                        <img src="https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?q=80&w=800&auto=format&fit=crop" alt="環境への配慮" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl tracking-widest text-earthBrown mb-4">環境への配慮</h3>
+                    <p class="font-sans font-light text-sm leading-loose tracking-wider text-earthBrown/80 px-4">
+                        ペットボトル飲料を買う必要がなくなり、プラスチックゴミを大幅に削減。地球環境に優しいサステナブルな暮らしを実現します。
+                    </p>
+                </div>
+
+                <!-- 特徴 2 -->
+                <div class="flex flex-col items-center text-center fade-up" style="transition-delay: 0.2s;">
+                    <div class="w-48 h-48 organic-shape overflow-hidden mb-8 shadow-lg border-4 border-sandBeige bg-forestGreen/5">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="体への優しさ" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl tracking-widest text-earthBrown mb-4">からだへの優しさ</h3>
+                    <p class="font-sans font-light text-sm leading-loose tracking-wider text-earthBrown/80 px-4">
+                        塩素や化学物質を徹底的に除去。赤ちゃんのデリケートな肌や、毎日の料理にも安心して使える、純粋な水をお届けします。
+                    </p>
+                </div>
+
+                <!-- 特徴 3 -->
+                <div class="flex flex-col items-center text-center fade-up" style="transition-delay: 0.4s;">
+                    <div class="w-48 h-48 organic-shape-2 overflow-hidden mb-8 shadow-lg border-4 border-sandBeige bg-forestGreen/5">
+                        <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=800&auto=format&fit=crop" alt="空間との調和" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl tracking-widest text-earthBrown mb-4">空間との調和</h3>
+                    <p class="font-sans font-light text-sm leading-loose tracking-wider text-earthBrown/80 px-4">
+                        屋外のメーター付近に設置するため、室内の景観を損ないません。自然素材を基調としたインテリアにも美しく調和します。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- パートナー企業（無限スクロール） -->
+    <section class="w-full py-20 bg-sandBeige overflow-hidden">
+        <div class="text-center mb-10 fade-up">
+            <p class="font-sans font-light text-xs tracking-[0.3em] uppercase text-earthBrown/60">Partners</p>
+        </div>
+        <div class="relative flex overflow-hidden whitespace-nowrap w-full">
+            <div class="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-sandBeige to-transparent z-10"></div>
+            <div class="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-sandBeige to-transparent z-10"></div>
+            
+            <div class="flex animate-marquee w-max items-center opacity-40">
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">TOTO</span>
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">LIXIL</span>
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">Panasonic</span>
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">Takara</span>
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">Rinnai</span>
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">NORITZ</span>
+                <!-- ループ用 -->
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">TOTO</span>
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">LIXIL</span>
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">Panasonic</span>
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">Takara</span>
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">Rinnai</span>
+                <span class="mx-16 font-sans font-light text-xl tracking-[0.2em] uppercase text-earthBrown">NORITZ</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせフォーム -->
+    <section id="contact" class="py-32 px-6 bg-forestGreen text-clayWhite relative">
+        <div class="max-w-[700px] mx-auto fade-up">
+            <div class="text-center mb-20">
+                <h2 class="font-serif text-3xl tracking-widest mb-6">お問い合わせ</h2>
+                <p class="font-sans font-light text-sm tracking-wider leading-loose opacity-80">
+                    自然と調和する暮らしへの第一歩。<br>
+                    導入に関するご相談や資料請求など、お気軽にお問い合わせください。
+                </p>
+            </div>
+
+            <form class="space-y-10" onsubmit="event.preventDefault();">
+                <div>
+                    <label class="block font-sans font-light text-xs tracking-widest mb-2 uppercase opacity-80">Company</label>
+                    <input type="text" class="w-full bg-transparent border-b border-clayWhite/30 py-2 font-sans font-light text-lg outline-none focus:border-clayWhite transition-colors placeholder-clayWhite/20" placeholder="会社名（任意）">
+                </div>
+
+                <div>
+                    <label class="block font-sans font-light text-xs tracking-widest mb-2 uppercase opacity-80">Name <span class="text-leafGreen">*</span></label>
+                    <input type="text" required class="w-full bg-transparent border-b border-clayWhite/30 py-2 font-sans font-light text-lg outline-none focus:border-clayWhite transition-colors placeholder-clayWhite/20" placeholder="お名前">
+                </div>
+
+                <div>
+                    <label class="block font-sans font-light text-xs tracking-widest mb-2 uppercase opacity-80">Email <span class="text-leafGreen">*</span></label>
+                    <input type="email" required class="w-full bg-transparent border-b border-clayWhite/30 py-2 font-sans font-light text-lg outline-none focus:border-clayWhite transition-colors placeholder-clayWhite/20" placeholder="メールアドレス">
+                </div>
+
+                <div>
+                    <label class="block font-sans font-light text-xs tracking-widest mb-2 uppercase opacity-80">Message <span class="text-leafGreen">*</span></label>
+                    <textarea required class="w-full bg-transparent border-b border-clayWhite/30 py-2 font-sans font-light text-lg outline-none focus:border-clayWhite transition-colors resize-none h-32 placeholder-clayWhite/20" placeholder="ご相談内容をご記入ください"></textarea>
+                </div>
+
+                <div class="text-center pt-8">
+                    <button type="submit" class="inline-flex items-center justify-center bg-clayWhite text-forestGreen hover:bg-leafGreen hover:text-white transition-colors duration-500 rounded-full px-12 py-4 font-sans font-medium text-sm tracking-[0.2em]">
+                        送信する
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="py-16 px-6 bg-forestGreen text-clayWhite border-t border-clayWhite/10">
+        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <a href="#" class="font-sans font-light text-sm tracking-[0.3em] uppercase flex items-center gap-2 hover:opacity-70 transition-opacity">
+                    <i data-lucide="leaf" class="w-5 h-5 stroke-[1.5]"></i>
+                    Aqua Boost
+                </a>
+                <p class="font-serif text-sm tracking-widest opacity-80">自然のサイクルを、家の中へ。</p>
+            </div>
+            
+            <div class="flex gap-8 font-sans font-light text-xs tracking-widest opacity-80">
+                <a href="#" class="hover:text-leafGreen transition-colors">会社概要</a>
+                <a href="#" class="hover:text-leafGreen transition-colors">プライバシーポリシー</a>
+            </div>
+        </div>
+        <div class="max-w-[1200px] mx-auto text-center mt-12">
+            <p class="font-sans font-light text-[10px] tracking-[0.2em] opacity-50 uppercase">
+                &copy; 2026 Aqua Boost. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- スクリプト -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Lucideアイコンの初期化
+            lucide.createIcons();
+
+            // ヘッダーのスクロール時の背景色変更
+            const header = document.getElementById("main-header");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 50) {
+                    header.classList.add("bg-forestGreen/95", "backdrop-blur-sm", "shadow-sm");
+                } else {
+                    header.classList.remove("bg-forestGreen/95", "backdrop-blur-sm", "shadow-sm");
+                }
+            });
+
+            // Intersection Observerを使用したスクロール時の要素表示アニメーション
+            const revealElements = document.querySelectorAll(".fade-up");
+            
+            const revealOptions = {
+                root: null,
+                rootMargin: "0px 0px -50px 0px",
+                threshold: 0.1
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(element => {
+                revealObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

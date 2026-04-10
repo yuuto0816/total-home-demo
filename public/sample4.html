@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth bg-black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUA BOOST | The Art of Purity</title>
+    
+    <!-- Tailwind CSSの読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0a0a0a',
+                        offWhite: '#EFECE6',
+                        accent: '#4B5563',
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', '"Noto Sans JP"', 'sans-serif'],
+                        serif: ['"Playfair Display"', '"Yu Mincho"', '"Hiragino Mincho ProN"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fontsの読み込み（美しいセリフ体とゴシック体） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Noto+Sans+JP:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- アイコンライブラリ（Lucide） -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- カスタムCSS（アニメーションや特殊効果） -->
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #EFECE6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 日本語の明朝体指定 */
+        .font-serif-ja {
+            font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+        }
+
+        /* 縦書きの設定 */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+
+        /* スクロールアニメーションのベースクラス */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ゆっくりと拡大する画像のアニメーション */
+        .zoom-img {
+            transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .img-container:hover .zoom-img {
+            transform: scale(1.05);
+        }
+
+        /* 背景固定用のユーティリティ */
+        .bg-fixed-parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+
+        /* ストーリーセクションのテキストフェード用 */
+        .story-text {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .story-text.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="selection:bg-offWhite selection:text-darkBg">
+
+    <!-- ミニマルなヘッダー -->
+    <header class="fixed top-0 left-0 w-full p-6 md:p-10 z-50 flex justify-between items-center mix-blend-difference">
+        <a href="#" class="font-serif italic text-2xl tracking-widest text-white hover:opacity-50 transition-opacity">
+            Aqua Boost.
+        </a>
+        <div class="flex items-center gap-6 text-white">
+            <span class="font-sans text-xs tracking-[0.3em] uppercase hidden md:block">The Magazine / Vol.01</span>
+            <button class="focus:outline-none hover:opacity-50 transition-opacity">
+                <i data-lucide="menu" class="w-6 h-6 stroke-[1]"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- シネマティック・ヒーローセクション -->
+    <section class="relative w-full h-screen overflow-hidden flex flex-col justify-end p-6 md:p-12">
+        <!-- 固定背景画像 -->
+        <div class="absolute inset-0 z-0 bg-fixed-parallax" style="background-image: url('https://images.unsplash.com/photo-1436891620584-47fd0e565afb?q=80&w=2000&auto=format&fit=crop'); opacity: 0.6;"></div>
+        
+        <!-- グラデーションマスク -->
+        <div class="absolute inset-0 z-0 bg-gradient-to-t from-darkBg via-darkBg/50 to-transparent"></div>
+
+        <div class="relative z-10 w-full flex flex-col md:flex-row justify-between items-end mb-8 md:mb-12">
+            <h1 class="font-serif italic text-[18vw] md:text-[12vw] leading-[0.8] mb-8 md:mb-0 reveal active" style="transition-delay: 0.5s;">
+                Purity.
+            </h1>
+            <div class="flex flex-col items-end gap-8 reveal active" style="transition-delay: 1s;">
+                <p class="font-serif-ja text-sm md:text-base tracking-[0.4em] leading-loose text-right text-offWhite/80 max-w-sm">
+                    究極の透明度がもたらす、<br>
+                    かつてない肌触りと安らぎ。
+                </p>
+                <div class="flex flex-col items-center gap-2 mt-8">
+                    <span class="font-sans text-[9px] tracking-[0.3em] uppercase">Scroll</span>
+                    <div class="w-[1px] h-12 bg-offWhite/50 relative overflow-hidden">
+                        <div class="w-full h-full bg-offWhite absolute top-0 left-0 animate-[slide-down_1.5s_linear_infinite]" style="@keyframes slide-down { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ストーリーテリングセクション（縦スクロールで展開） -->
+    <section class="relative w-full bg-darkBg pb-32">
+        <div class="max-w-4xl mx-auto px-6 pt-32">
+            
+            <!-- Scene 1 -->
+            <div class="min-h-[80vh] flex flex-col justify-center items-center text-center reveal">
+                <p class="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mb-8">Chapter 01</p>
+                <h2 class="font-serif-ja text-3xl md:text-5xl leading-loose tracking-[0.3em] mb-12">
+                    透明という<br>新しい価値観。
+                </h2>
+                <p class="font-serif-ja text-base md:text-lg text-offWhite/60 leading-[2.5] tracking-widest max-w-2xl mx-auto">
+                    私たちは毎日、どれほどの水に触れているでしょうか。<br>
+                    水分補給、毎日の料理、疲れた体を癒やすお風呂。<br>
+                    暮らしの豊かさは、水の質と直結しています。
+                </p>
+            </div>
+
+            <!-- 画像インサート -->
+            <div class="w-full my-32 img-container overflow-hidden reveal">
+                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=2000&auto=format&fit=crop" alt="ラボのイメージ" class="w-full h-[60vh] object-cover grayscale zoom-img">
+            </div>
+
+            <!-- Scene 2 -->
+            <div class="min-h-[80vh] flex flex-col justify-center items-center text-center reveal">
+                <p class="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mb-8">Chapter 02</p>
+                <h2 class="font-serif-ja text-3xl md:text-5xl leading-loose tracking-[0.3em] mb-12">
+                    見えない不純物を、<br>一切残さない。
+                </h2>
+                <p class="font-serif-ja text-base md:text-lg text-offWhite/60 leading-[2.5] tracking-widest max-w-2xl mx-auto">
+                    AQUA BOOSTは、水道メーターの直後から水をろ過。<br>
+                    微細な多層フィルターと医療レベルの技術が、<br>
+                    水本来の純粋な姿を取り戻します。
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- アシンメトリー・ギャラリーセクション -->
+    <section class="py-32 px-6 md:px-12 bg-[#111111] border-t border-[#222]">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+            
+            <div class="md:col-span-5 md:col-start-2 reveal">
+                <div class="font-serif italic text-4xl md:text-6xl text-offWhite mb-8">The Art of<br>Filtration.</div>
+                <p class="font-serif-ja text-offWhite/60 leading-[2.5] tracking-widest">
+                    本当に良いものは、目には見えません。<br>
+                    シャワーを浴びた時の髪の指通りや、野菜を洗った時の鮮度、コーヒーを淹れた時の豊かな香りの中で、その存在を確かに感じるのです。
+                </p>
+            </div>
+
+            <div class="md:col-span-4 md:col-start-8 reveal">
+                <div class="relative w-full aspect-[3/4] img-container overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?q=80&w=1500&auto=format&fit=crop" alt="水のディテール" class="w-full h-full object-cover grayscale opacity-80 zoom-img">
+                </div>
+                <p class="mt-4 font-sans text-[10px] tracking-widest uppercase text-accent text-right">Fig 3. Center Unit</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ミニマルなスペックテーブル -->
+    <section class="py-32 px-6 md:px-12 bg-offWhite text-darkBg">
+        <div class="max-w-4xl mx-auto reveal">
+            <h2 class="font-serif italic text-4xl mb-20 text-center">Specifications</h2>
+            
+            <div class="border-t border-darkBg">
+                <!-- 行1 -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-darkBg hover:bg-darkBg/5 transition-colors px-4">
+                    <span class="font-sans text-xs tracking-[0.3em] uppercase text-accent mb-2 md:mb-0">Filtration System</span>
+                    <span class="font-serif-ja text-lg tracking-widest">高機能3層RO膜フィルター</span>
+                </div>
+                <!-- 行2 -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-darkBg hover:bg-darkBg/5 transition-colors px-4">
+                    <span class="font-sans text-xs tracking-[0.3em] uppercase text-accent mb-2 md:mb-0">Bacterial Removal</span>
+                    <span class="font-serif text-xl tracking-widest">99.99%</span>
+                </div>
+                <!-- 行3 -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-darkBg hover:bg-darkBg/5 transition-colors px-4">
+                    <span class="font-sans text-xs tracking-[0.3em] uppercase text-accent mb-2 md:mb-0">Chlorine Reduction</span>
+                    <span class="font-serif-ja text-lg tracking-widest">完全無害化処理</span>
+                </div>
+                <!-- 行4 -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-darkBg hover:bg-darkBg/5 transition-colors px-4">
+                    <span class="font-sans text-xs tracking-[0.3em] uppercase text-accent mb-2 md:mb-0">Maintenance Cycle</span>
+                    <span class="font-serif text-xl tracking-widest">1 Year</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フルスクリーン クオート（引用）セクション -->
+    <section class="py-48 px-6 bg-darkBg text-offWhite text-center relative overflow-hidden">
+        <!-- ぼんやりとした背景の光 -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white rounded-full mix-blend-overlay opacity-5 blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto relative z-10 reveal">
+            <h3 class="font-serif italic text-3xl md:text-5xl lg:text-7xl leading-tight text-offWhite/90">
+                "It's not just about drinking water.<br>It's about how water touches<br>every part of your life."
+            </h3>
+            <p class="font-serif-ja mt-16 tracking-[0.6em] text-sm md:text-base text-accent">
+                水を変えることは、人生を変えること。
+            </p>
+        </div>
+    </section>
+
+    <!-- コンタクトフォーム（ダークテーマ） -->
+    <section class="py-32 px-6 bg-[#111111] border-t border-[#222]">
+        <div class="max-w-[720px] mx-auto reveal">
+            <div class="text-center mb-24">
+                <h2 class="font-serif italic text-4xl mb-4 text-offWhite">Inquiry.</h2>
+                <p class="font-serif-ja text-sm tracking-[0.3em] leading-loose text-accent">
+                    理想の水を、あなたの設計図に。<br>
+                    導入のご相談を承ります。
+                </p>
+            </div>
+
+            <form class="font-serif-ja text-offWhite space-y-12" onsubmit="event.preventDefault();">
+                <div class="border-b border-[#333] py-4">
+                    <label class="block tracking-widest text-xs text-accent mb-4 uppercase">Company</label>
+                    <input type="text" class="w-full bg-transparent text-lg outline-none placeholder-[#444] pb-2" placeholder="御社名">
+                </div>
+
+                <div class="border-b border-[#333] py-4">
+                    <label class="block tracking-widest text-xs text-accent mb-4 uppercase">Name <span class="text-white ml-2">*</span></label>
+                    <input type="text" required class="w-full bg-transparent text-lg outline-none placeholder-[#444] pb-2" placeholder="ご担当者名">
+                </div>
+
+                <div class="border-b border-[#333] py-4">
+                    <label class="block tracking-widest text-xs text-accent mb-4 uppercase">Email <span class="text-white ml-2">*</span></label>
+                    <input type="email" required class="w-full bg-transparent text-lg outline-none placeholder-[#444] pb-2" placeholder="メールアドレス">
+                </div>
+
+                <div class="border-b border-[#333] py-4">
+                    <label class="block tracking-widest text-xs text-accent mb-4 uppercase">Message <span class="text-white ml-2">*</span></label>
+                    <textarea required class="w-full bg-transparent text-lg outline-none resize-none h-32 placeholder-[#444] pb-2" placeholder="お問い合わせ内容"></textarea>
+                </div>
+                
+                <div class="text-center pt-12">
+                    <button type="submit" class="border border-offWhite text-offWhite px-16 py-5 uppercase tracking-[0.3em] text-xs hover:bg-offWhite hover:text-darkBg transition duration-500 w-full md:w-auto">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ミニマルフッター -->
+    <footer class="bg-darkBg text-offWhite pt-32 pb-12 px-6 border-t border-[#1a1a1a]">
+        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <a href="#" class="font-serif italic text-2xl tracking-widest hover:opacity-50 transition">
+                Aqua Boost.
+            </a>
+            
+            <div class="flex flex-col md:flex-row items-center gap-8 font-sans text-[10px] tracking-[0.3em] uppercase text-accent">
+                <a href="#" class="hover:text-offWhite transition">Company</a>
+                <a href="#" class="hover:text-offWhite transition">Privacy</a>
+                <a href="#" class="hover:text-offWhite transition">Terms</a>
+            </div>
+        </div>
+        <div class="max-w-[1200px] mx-auto text-center mt-24">
+            <p class="font-sans text-[9px] tracking-widest text-[#333] uppercase">
+                &copy; 2026 Aqua Boost. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- スクリプト -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Lucideアイコンの初期化
+            lucide.createIcons();
+
+            // スクロール時の要素出現アニメーション（Reveal）
+            const revealElements = document.querySelectorAll(".reveal");
+            
+            const revealOptions = {
+                root: null,
+                rootMargin: "0px 0px -100px 0px", // 画面下部から100pxの位置で発火
+                threshold: 0.1
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        // 一度表示されたら監視を解除（スクロールして戻っても消えない）
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(element => {
+                revealObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

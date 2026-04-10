@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUA BOOST | 究極の浄水パワー</title>
+    
+    <!-- Tailwind CSSの読み込みとカスタム設定 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aquaBlue: '#00B4D8',      /* 鮮やかな水色 */
+                        oceanDark: '#03045E',     /* 深い海の青 */
+                        waveLight: '#CAF0F8',     /* 波しぶきのような明るい青 */
+                        waterCyan: '#90E0EF',     /* アクセントのシアン */
+                        darkGray: '#1F2937',      /* テキスト用のダークグレー */
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        display: ['"Montserrat"', '"Noto Sans JP"', 'sans-serif'], /* 力強い見出し用フォント */
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fontsの読み込み（力強いゴシック体と英字フォント） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- アイコンライブラリ（Lucide） -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- カスタムCSS（ダイナミックな形状とアニメーション） -->
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #1F2937;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 斜めに切り取るクリップパス（躍動感の演出） */
+        .clip-diagonal {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+        .clip-diagonal-reverse {
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        /* 水面が動くような背景アニメーション */
+        .bg-wave-gradient {
+            background: linear-gradient(-45deg, #03045E, #0077B6, #00B4D8, #90E0EF);
+            background-size: 400% 400%;
+            animation: gradient-flow 15s ease infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* スクロール時のフェードアップアニメーション初期状態 */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.1, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.1, 0.8, 0.2, 1);
+        }
+        /* スクロールして画面に入った状態 */
+        .fade-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ホバー時のダイナミックな動き */
+        .hover-dynamic {
+            transition: transform 0.4s cubic-bezier(0.1, 0.8, 0.2, 1), box-shadow 0.4s ease;
+        }
+        .hover-dynamic:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 180, 216, 0.25);
+        }
+
+        /* 無限スクロール用 */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+        }
+    </style>
+</head>
+<body class="selection:bg-aquaBlue selection:text-white overflow-x-hidden">
+
+    <!-- ダイナミックヘッダー -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-white">
+            <a href="#" class="font-display font-black text-2xl tracking-widest flex items-center gap-2 hover:text-waterCyan transition-colors">
+                <i data-lucide="waves" class="w-8 h-8 stroke-[2.5]"></i>
+                <span class="uppercase">Aqua Boost</span>
+            </a>
+            
+            <nav class="hidden md:flex gap-10 font-sans font-bold tracking-widest text-sm uppercase">
+                <a href="#concept" class="hover:text-waterCyan transition-colors">Concept</a>
+                <a href="#features" class="hover:text-waterCyan transition-colors">Performance</a>
+                <a href="#contact" class="hover:text-waterCyan transition-colors">Contact</a>
+            </nav>
+
+            <a href="#contact" class="hidden md:block bg-waterCyan text-oceanDark font-bold tracking-widest px-6 py-2 rounded-full hover:bg-white transition-colors uppercase text-sm">
+                Get Started
+            </a>
+
+            <button class="md:hidden text-white hover:text-waterCyan transition-colors focus:outline-none">
+                <i data-lucide="menu" class="w-8 h-8 stroke-[2]"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション（躍動感のある斜めカット） -->
+    <section class="relative w-full h-[100vh] flex items-center justify-center overflow-hidden clip-diagonal bg-oceanDark">
+        <!-- ダイナミックな背景画像 -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2000&auto=format&fit=crop" alt="水しぶきのエネルギー" class="w-full h-full object-cover opacity-60 mix-blend-screen scale-105">
+            <div class="absolute inset-0 bg-wave-gradient opacity-60 mix-blend-overlay"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-20">
+            <div class="max-w-3xl">
+                <p class="fade-up font-display font-bold text-waterCyan tracking-[0.3em] uppercase mb-4 text-sm md:text-base">
+                    Unleash the Power of Pure Water
+                </p>
+                <h1 class="fade-up font-sans font-black text-5xl md:text-7xl lg:text-8xl text-white leading-tight mb-8" style="transition-delay: 0.1s;">
+                    家中の水を、<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-waterCyan to-aquaBlue">
+                        圧倒的な純度へ。
+                    </span>
+                </h1>
+                <p class="fade-up font-sans font-bold text-waveLight text-lg md:text-xl leading-loose tracking-wider max-w-2xl mb-12" style="transition-delay: 0.2s;">
+                    最先端テクノロジーがもたらす、かつてない浄水体験。<br>
+                    毎日の暮らしに、ダイナミックなみずみずしさを。
+                </p>
+                
+                <div class="fade-up flex flex-col sm:flex-row gap-6" style="transition-delay: 0.3s;">
+                    <a href="#features" class="inline-flex items-center justify-center gap-2 bg-aquaBlue text-white font-bold tracking-widest px-10 py-5 rounded-full hover:bg-white hover:text-aquaBlue transition-all duration-300 text-lg shadow-lg shadow-aquaBlue/30">
+                        テクノロジーを見る
+                        <i data-lucide="arrow-down-right" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- コンセプトセクション -->
+    <section id="concept" class="py-32 px-6 bg-white relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1 relative fade-up">
+                    <div class="aspect-[4/3] rounded-3xl overflow-hidden clip-diagonal-reverse relative z-10 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1500&auto=format&fit=crop" alt="透明感のある水" class="w-full h-full object-cover">
+                    </div>
+                    <!-- 装飾ブロック -->
+                    <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-waveLight rounded-full mix-blend-multiply blur-3xl z-0"></div>
+                </div>
+
+                <div class="order-1 lg:order-2 fade-up" style="transition-delay: 0.2s;">
+                    <h2 class="font-display font-black text-4xl md:text-5xl text-oceanDark mb-6 uppercase tracking-wider">
+                        High Performance.<br>Zero Impurities.
+                    </h2>
+                    <h3 class="font-sans font-bold text-2xl md:text-3xl text-aquaBlue mb-8">
+                        妥協なき性能で、不純物をゼロへ。
+                    </h3>
+                    <p class="font-sans text-darkGray leading-loose tracking-wider text-lg mb-8">
+                        私たちが提供するのは、単なる浄水器ではありません。家全体の水脈を根本から変革する、強力なウォータープラットフォームです。<br><br>
+                        水道直結のセントラル方式により、蛇口をひねるだけで、常に最高純度の水が勢いよくあふれ出します。料理も、お風呂も、すべてが劇的に変わる体験を。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- パフォーマンス（特徴）セクション -->
+    <section id="features" class="py-32 px-6 bg-waveLight relative clip-diagonal-reverse pb-48">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-20 fade-up">
+                <h2 class="font-display font-black text-5xl md:text-6xl text-oceanDark mb-4 uppercase tracking-wider">Performance</h2>
+                <p class="font-sans font-bold text-xl text-aquaBlue">選ばれる圧倒的な理由</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- カード 1 -->
+                <div class="bg-white rounded-3xl p-10 hover-dynamic fade-up border-b-4 border-aquaBlue">
+                    <div class="w-16 h-16 bg-oceanDark rounded-2xl flex items-center justify-center mb-8 text-white transform -rotate-6">
+                        <i data-lucide="zap" class="w-8 h-8 fill-current"></i>
+                    </div>
+                    <h3 class="font-sans font-black text-2xl text-oceanDark mb-4">高速浄化エンジン</h3>
+                    <p class="font-sans text-darkGray leading-loose font-medium">
+                        独自開発の大容量フィルターが、水の勢いを落とすことなく瞬時に不純物を除去。ストレスフリーな水量を実現します。
+                    </p>
+                </div>
+
+                <!-- カード 2 -->
+                <div class="bg-white rounded-3xl p-10 hover-dynamic fade-up border-b-4 border-aquaBlue" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-oceanDark rounded-2xl flex items-center justify-center mb-8 text-white transform rotate-3">
+                        <i data-lucide="shield-check" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-sans font-black text-2xl text-oceanDark mb-4">医療級プロテクト</h3>
+                    <p class="font-sans text-darkGray leading-loose font-medium">
+                        塩素、サビ、バクテリアを99.9%シャットアウト。肌や髪へのダメージを根本から防ぎ、毎日の健康を強力に守ります。
+                    </p>
+                </div>
+
+                <!-- カード 3 -->
+                <div class="bg-white rounded-3xl p-10 hover-dynamic fade-up border-b-4 border-aquaBlue" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-oceanDark rounded-2xl flex items-center justify-center mb-8 text-white transform -rotate-3">
+                        <i data-lucide="settings" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-sans font-black text-2xl text-oceanDark mb-4">メンテフリー設計</h3>
+                    <p class="font-sans text-darkGray leading-loose font-medium">
+                        過酷な使用にも耐えうる堅牢な設計。煩わしい日常のメンテナンスは不要で、長期間にわたり最高のパフォーマンスを維持します。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ダイナミックなロゴスクロール -->
+    <section class="w-full py-20 bg-oceanDark overflow-hidden text-white">
+        <div class="text-center mb-10 fade-up">
+            <p class="font-display font-bold text-sm tracking-[0.3em] uppercase text-waterCyan">Supported by Top Brands</p>
+        </div>
+        <div class="relative flex overflow-hidden whitespace-nowrap w-full">
+            <div class="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-oceanDark to-transparent z-10"></div>
+            <div class="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-oceanDark to-transparent z-10"></div>
+            
+            <div class="flex animate-marquee w-max items-center">
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">TOTO</span>
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">LIXIL</span>
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">Panasonic</span>
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">Takara</span>
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">Rinnai</span>
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">NORITZ</span>
+                <!-- ループ用 -->
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">TOTO</span>
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">LIXIL</span>
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">Panasonic</span>
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">Takara</span>
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">Rinnai</span>
+                <span class="mx-16 font-display font-black text-3xl md:text-5xl tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity">NORITZ</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ダイナミック・コンタクトセクション -->
+    <section id="contact" class="py-32 md:py-48 px-6 bg-white relative">
+        <div class="max-w-4xl mx-auto bg-oceanDark rounded-[40px] overflow-hidden shadow-2xl relative fade-up">
+            <!-- 背景の装飾 -->
+            <div class="absolute top-0 right-0 w-full h-full bg-wave-gradient opacity-20 pointer-events-none"></div>
+            
+            <div class="p-10 md:p-16 relative z-10 text-white flex flex-col items-center text-center">
+                <i data-lucide="zap" class="w-12 h-12 text-waterCyan mb-6 fill-current"></i>
+                <h2 class="font-display font-black text-4xl md:text-5xl uppercase tracking-wider mb-6">Ready to Boost?</h2>
+                <p class="font-sans font-bold text-waveLight text-lg mb-12">
+                    圧倒的な水質改善を、あなたの住まいへ。<br>
+                    シミュレーションやご相談は無料で承ります。
+                </p>
+
+                <form class="w-full max-w-2xl text-left space-y-6" onsubmit="event.preventDefault();">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block font-sans font-bold text-sm tracking-widest mb-2 uppercase text-waterCyan">Name</label>
+                            <input type="text" required class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 font-sans text-white outline-none focus:border-waterCyan focus:bg-white/20 transition-colors" placeholder="お名前">
+                        </div>
+                        <div>
+                            <label class="block font-sans font-bold text-sm tracking-widest mb-2 uppercase text-waterCyan">Email</label>
+                            <input type="email" required class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 font-sans text-white outline-none focus:border-waterCyan focus:bg-white/20 transition-colors" placeholder="メールアドレス">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-sans font-bold text-sm tracking-widest mb-2 uppercase text-waterCyan">Message</label>
+                        <textarea required class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 font-sans text-white outline-none focus:border-waterCyan focus:bg-white/20 transition-colors resize-none h-32" placeholder="お問い合わせ内容をご記入ください"></textarea>
+                    </div>
+
+                    <div class="text-center pt-6">
+                        <button type="submit" class="inline-flex items-center justify-center gap-3 bg-waterCyan text-oceanDark hover:bg-white hover:scale-105 transition-all duration-300 rounded-full px-12 py-5 font-sans font-black text-lg tracking-widest uppercase w-full sm:w-auto">
+                            Send Request
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 力強いフッター -->
+    <footer class="py-16 px-6 bg-darkGray text-white border-t-4 border-aquaBlue">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <a href="#" class="font-display font-black text-2xl tracking-widest flex items-center gap-2 hover:text-waterCyan transition-colors">
+                    <i data-lucide="waves" class="w-6 h-6 stroke-[3]"></i>
+                    <span class="uppercase">Aqua Boost</span>
+                </a>
+                <p class="font-sans font-bold text-xs tracking-widest text-waveLight">究極の浄水パワーを、すべての家庭に。</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-8 font-sans font-bold text-xs tracking-widest uppercase">
+                <a href="#" class="hover:text-waterCyan transition-colors">Company</a>
+                <a href="#" class="hover:text-waterCyan transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-waterCyan transition-colors">Contact</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto text-center mt-12 pt-8 border-t border-white/10">
+            <p class="font-sans font-bold text-[10px] tracking-widest text-white/50 uppercase">
+                &copy; 2026 Aqua Boost. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- スクリプト -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Lucideアイコンの初期化
+            lucide.createIcons();
+
+            // ヘッダーのスクロール時の背景色変更
+            const header = document.getElementById("main-header");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 50) {
+                    header.classList.add("bg-oceanDark", "shadow-lg", "py-4");
+                    header.classList.remove("py-6");
+                } else {
+                    header.classList.remove("bg-oceanDark", "shadow-lg", "py-4");
+                    header.classList.add("py-6");
+                }
+            });
+
+            // Intersection Observerを使用したスクロール時の要素表示アニメーション
+            const revealElements = document.querySelectorAll(".fade-up");
+            
+            const revealOptions = {
+                root: null,
+                rootMargin: "0px 0px -50px 0px",
+                threshold: 0.1
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target); // 一度表示されたら監視を解除
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(element => {
+                revealObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
