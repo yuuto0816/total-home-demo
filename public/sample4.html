@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AQUA BOOST | The Art of Purity</title>
+    <title>株式会社トータルホームジャパン | 全国の住まいの安心を支え、暮らしの快適をつくる</title>
     
     <!-- Tailwind CSSの読み込み -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,6 +15,7 @@
                         darkBg: '#0a0a0a',
                         offWhite: '#EFECE6',
                         accent: '#4B5563',
+                        gold: '#C4A052',
                     },
                     fontFamily: {
                         sans: ['"Inter"', '"Noto Sans JP"', 'sans-serif'],
@@ -28,7 +29,7 @@
     <!-- Google Fontsの読み込み（美しいセリフ体とゴシック体） -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Noto+Sans+JP:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <!-- アイコンライブラリ（Lucide） -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -55,19 +56,31 @@
         /* スクロールアニメーションのベースクラス */
         .reveal {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+            transform: translateY(50px) scale(0.98);
+            transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         /* ゆっくりと拡大する画像のアニメーション */
-        .zoom-img {
-            transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            background: #111;
         }
-        .img-container:hover .zoom-img {
+        .img-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+            pointer-events: none;
+        }
+        .zoom-img {
+            transition: transform 3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active .zoom-img {
             transform: scale(1.05);
         }
 
@@ -86,17 +99,32 @@
         .story-text.active {
             opacity: 1;
         }
+
+        /* 無限スクロール（マーキー） */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 40s linear infinite;
+        }
     </style>
 </head>
-<body class="selection:bg-offWhite selection:text-darkBg">
+<body class="selection:bg-offWhite selection:text-darkBg overflow-x-hidden">
 
     <!-- ミニマルなヘッダー -->
-    <header class="fixed top-0 left-0 w-full p-6 md:p-10 z-50 flex justify-between items-center mix-blend-difference">
-        <a href="#" class="font-serif italic text-2xl tracking-widest text-white hover:opacity-50 transition-opacity">
-            Aqua Boost.
+    <header class="fixed top-0 left-0 w-full p-6 md:p-10 z-50 flex justify-between items-center mix-blend-difference text-white">
+        <a href="#" class="font-serif italic text-xl md:text-2xl tracking-widest hover:opacity-50 transition-opacity uppercase">
+            TOTAL HOME JAPAN.
         </a>
-        <div class="flex items-center gap-6 text-white">
-            <span class="font-sans text-xs tracking-[0.3em] uppercase hidden md:block">The Magazine / Vol.01</span>
+        <div class="flex items-center gap-6">
+            <nav class="hidden lg:flex gap-10 font-sans text-[10px] tracking-[0.3em] uppercase opacity-60">
+                <a href="#mission" class="hover:opacity-100 transition-opacity">Mission</a>
+                <a href="#business" class="hover:opacity-100 transition-opacity">Business</a>
+                <a href="#reasons" class="hover:opacity-100 transition-opacity">Reasons</a>
+                <a href="#greeting" class="hover:opacity-100 transition-opacity">Greeting</a>
+                <a href="#contact" class="hover:opacity-100 transition-opacity">Contact</a>
+            </nav>
             <button class="focus:outline-none hover:opacity-50 transition-opacity">
                 <i data-lucide="menu" class="w-6 h-6 stroke-[1]"></i>
             </button>
@@ -106,169 +134,303 @@
     <!-- シネマティック・ヒーローセクション -->
     <section class="relative w-full h-screen overflow-hidden flex flex-col justify-end p-6 md:p-12">
         <!-- 固定背景画像 -->
-        <div class="absolute inset-0 z-0 bg-fixed-parallax" style="background-image: url('https://images.unsplash.com/photo-1436891620584-47fd0e565afb?q=80&w=2000&auto=format&fit=crop'); opacity: 0.6;"></div>
+        <div class="absolute inset-0 z-0 bg-fixed-parallax" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop'); opacity: 0.4;"></div>
         
         <!-- グラデーションマスク -->
         <div class="absolute inset-0 z-0 bg-gradient-to-t from-darkBg via-darkBg/50 to-transparent"></div>
 
         <div class="relative z-10 w-full flex flex-col md:flex-row justify-between items-end mb-8 md:mb-12">
-            <h1 class="font-serif italic text-[18vw] md:text-[12vw] leading-[0.8] mb-8 md:mb-0 reveal active" style="transition-delay: 0.5s;">
-                Purity.
+            <h1 class="font-serif italic text-[14vw] md:text-[8vw] leading-[0.8] mb-8 md:mb-0 reveal active" style="transition-delay: 0.5s;">
+                Trust.
             </h1>
             <div class="flex flex-col items-end gap-8 reveal active" style="transition-delay: 1s;">
-                <p class="font-serif-ja text-sm md:text-base tracking-[0.4em] leading-loose text-right text-offWhite/80 max-w-sm">
-                    究極の透明度がもたらす、<br>
-                    かつてない肌触りと安らぎ。
+                <p class="font-serif-ja text-sm md:text-lg tracking-[0.4em] leading-loose text-right text-offWhite max-w-lg">
+                    全国の住まいの安心を支え、<br>
+                    暮らしの快適をつくる。
                 </p>
                 <div class="flex flex-col items-center gap-2 mt-8">
-                    <span class="font-sans text-[9px] tracking-[0.3em] uppercase">Scroll</span>
-                    <div class="w-[1px] h-12 bg-offWhite/50 relative overflow-hidden">
-                        <div class="w-full h-full bg-offWhite absolute top-0 left-0 animate-[slide-down_1.5s_linear_infinite]" style="@keyframes slide-down { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }"></div>
+                    <span class="font-sans text-[9px] tracking-[0.4em] uppercase opacity-40">Scroll to Explore</span>
+                    <div class="w-[1px] h-12 bg-offWhite/20 relative overflow-hidden">
+                        <div class="w-full h-full bg-offWhite absolute top-0 left-0 animate-[slide-down_2s_linear_infinite]" style="@keyframes slide-down { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ストーリーテリングセクション（縦スクロールで展開） -->
-    <section class="relative w-full bg-darkBg pb-32">
-        <div class="max-w-4xl mx-auto px-6 pt-32">
+    <!-- ストーリーテリングセクション（ミッション） -->
+    <section id="mission" class="relative w-full bg-darkBg pb-32">
+        <div class="max-w-4xl mx-auto px-6 pt-40">
             
-            <!-- Scene 1 -->
             <div class="min-h-[80vh] flex flex-col justify-center items-center text-center reveal">
-                <p class="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mb-8">Chapter 01</p>
-                <h2 class="font-serif-ja text-3xl md:text-5xl leading-loose tracking-[0.3em] mb-12">
-                    透明という<br>新しい価値観。
+                <p class="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mb-12">Chapter 01 — Mission</p>
+                <h2 class="font-serif-ja text-3xl md:text-5xl leading-loose tracking-[0.3em] mb-16">
+                    東京から全国へ、<br>住まいの未来を支える。
                 </h2>
-                <p class="font-serif-ja text-base md:text-lg text-offWhite/60 leading-[2.5] tracking-widest max-w-2xl mx-auto">
-                    私たちは毎日、どれほどの水に触れているでしょうか。<br>
-                    水分補給、毎日の料理、疲れた体を癒やすお風呂。<br>
-                    暮らしの豊かさは、水の質と直結しています。
-                </p>
-            </div>
-
-            <!-- 画像インサート -->
-            <div class="w-full my-32 img-container overflow-hidden reveal">
-                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=2000&auto=format&fit=crop" alt="ラボのイメージ" class="w-full h-[60vh] object-cover grayscale zoom-img">
-            </div>
-
-            <!-- Scene 2 -->
-            <div class="min-h-[80vh] flex flex-col justify-center items-center text-center reveal">
-                <p class="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mb-8">Chapter 02</p>
-                <h2 class="font-serif-ja text-3xl md:text-5xl leading-loose tracking-[0.3em] mb-12">
-                    見えない不純物を、<br>一切残さない。
-                </h2>
-                <p class="font-serif-ja text-base md:text-lg text-offWhite/60 leading-[2.5] tracking-widest max-w-2xl mx-auto">
-                    AQUA BOOSTは、水道メーターの直後から水をろ過。<br>
-                    微細な多層フィルターと医療レベルの技術が、<br>
-                    水本来の純粋な姿を取り戻します。
-                </p>
+                <div class="font-serif-ja text-base md:text-lg text-offWhite/60 leading-[2.6] tracking-widest space-y-12">
+                    <p>
+                        私たちTOTAL HOME JAPANは、住まいに関わるさまざまなお困りごとに対応し、<br class="hidden md:block">お客様の安心で快適な暮らしを支えることを使命としています。
+                    </p>
+                    <p>
+                        住宅設備のご提案・施工・メンテナンスをはじめ、<br class="hidden md:block">住環境をより良くするための幅広いサービスを通じて、暮らしに寄り添う総合サポートを提供しています。
+                    </p>
+                    <p>
+                        住まいは、毎日の安心と快適を支える大切な基盤です。<br class="hidden md:block">私たちは、確かな対応力と柔軟な提案力で、一人ひとりの暮らしに最適な価値をお届けしてまいります。
+                    </p>
+                </div>
             </div>
 
         </div>
     </section>
 
-    <!-- アシンメトリー・ギャラリーセクション -->
-    <section class="py-32 px-6 md:px-12 bg-[#111111] border-t border-[#222]">
-        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+    <!-- 取扱メーカー 1（事業紹介の前） -->
+    <section class="w-full py-16 border-y border-white/5 overflow-hidden bg-black">
+        <div class="relative flex overflow-hidden whitespace-nowrap w-full opacity-30">
+            <div class="flex animate-marquee w-max items-center font-serif italic text-2xl md:text-5xl text-offWhite tracking-[0.4em] uppercase">
+                <span class="mx-16">Mitsubishi</span>
+                <span class="mx-16">Corona</span>
+                <span class="mx-16">Hitachi</span>
+                <span class="mx-16">Daikin</span>
+                <!-- Loop -->
+                <span class="mx-16">Mitsubishi</span>
+                <span class="mx-16">Corona</span>
+                <span class="mx-16">Hitachi</span>
+                <span class="mx-16">Daikin</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- アシンメトリー・ギャラリーセクション（事業内容） -->
+    <!-- 修正: 画面外にはみ出ないようにレイアウトを再構成 -->
+    <section id="business" class="py-32 px-6 md:px-12 bg-[#111111] overflow-hidden">
+        <div class="max-w-[1200px] mx-auto">
             
-            <div class="md:col-span-5 md:col-start-2 reveal">
-                <div class="font-serif italic text-4xl md:text-6xl text-offWhite mb-8">The Art of<br>Filtration.</div>
-                <p class="font-serif-ja text-offWhite/60 leading-[2.5] tracking-widest">
-                    本当に良いものは、目には見えません。<br>
-                    シャワーを浴びた時の髪の指通りや、野菜を洗った時の鮮度、コーヒーを淹れた時の豊かな香りの中で、その存在を確かに感じるのです。
-                </p>
+            <div class="mb-40 reveal text-center md:text-left">
+                <p class="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mb-6">Chapter 02 — Business</p>
+                <h2 class="font-serif italic text-4xl md:text-7xl text-offWhite tracking-tighter">Core Excellence.</h2>
             </div>
 
-            <div class="md:col-span-4 md:col-start-8 reveal">
-                <div class="relative w-full aspect-[3/4] img-container overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?q=80&w=1500&auto=format&fit=crop" alt="水のディテール" class="w-full h-full object-cover grayscale opacity-80 zoom-img">
+            <!-- 事業 1: 住宅設備 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center mb-40 md:mb-56">
+                <div class="reveal">
+                    <div class="img-container aspect-[4/5] rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1500" class="w-full h-full object-cover grayscale zoom-img">
+                    </div>
                 </div>
-                <p class="mt-4 font-sans text-[10px] tracking-widest uppercase text-accent text-right">Fig 3. Center Unit</p>
+                <div class="reveal md:pl-8 lg:pl-12">
+                    <div class="mb-10 w-12 h-px bg-accent"></div>
+                    <h3 class="font-serif-ja text-3xl md:text-4xl mb-10 tracking-widest leading-tight">① 住宅設備事業</h3>
+                    <p class="font-serif-ja text-offWhite/60 leading-[2.5] tracking-widest text-base md:text-lg">
+                        給湯器・エコキュート・空調設備・蓄電池・太陽光など、住まいに欠かせない各種設備のご提案から施工・交換・メンテナンスまで一貫して対応しています。
+                    </p>
+                </div>
             </div>
 
+            <!-- 事業 2: 浄水・電化 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center mb-40 md:mb-56">
+                <div class="order-2 md:order-1 reveal md:text-right md:pr-8 lg:pr-12">
+                    <div class="mb-10 w-12 h-px bg-accent mr-auto md:ml-auto md:mr-0"></div>
+                    <h3 class="font-serif-ja text-3xl md:text-4xl mb-10 tracking-widest leading-tight">② 浄水・オール電化<br>ソリューション</h3>
+                    <p class="font-serif-ja text-offWhite/60 leading-[2.5] tracking-widest text-base md:text-lg">
+                        毎日使う“水”と“電気”を、もっと快適に、もっと安心に。浄水器・オール電化設備・エコキュート・IHなど、暮らしの質を高める住宅設備をトータルでご提案し、住まいの環境を整えます。
+                    </p>
+                </div>
+                <div class="order-1 md:order-2 reveal">
+                    <div class="img-container aspect-square rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?q=80&w=1500" class="w-full h-full object-cover grayscale zoom-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 事業 3: 安心サポート -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center reveal">
+                <div class="reveal">
+                    <div class="img-container aspect-[16/9] rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1500" class="w-full h-full object-cover grayscale zoom-img">
+                    </div>
+                </div>
+                <div class="reveal md:pl-8 lg:pl-12">
+                    <div class="mb-10 w-12 h-px bg-accent"></div>
+                    <h3 class="font-serif-ja text-3xl md:text-4xl mb-10 tracking-widest leading-tight">③ 住まいの安心<br>サポート事業</h3>
+                    <p class="font-serif-ja text-offWhite/60 leading-[2.5] tracking-widest text-base md:text-lg">
+                        日常のお困りごとへの迅速な駆けつけ対応と丁寧なメンテナンスを提供。会員型サービスを通じて、日常の安心から万が一の備えまで、住まいを総合的に支えます。
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- ミニマルなスペックテーブル -->
-    <section class="py-32 px-6 md:px-12 bg-offWhite text-darkBg">
-        <div class="max-w-4xl mx-auto reveal">
-            <h2 class="font-serif italic text-4xl mb-20 text-center">Specifications</h2>
+    <!-- メーカーロゴスクロール 2（事業紹介の後） -->
+    <section class="w-full py-16 border-y border-white/5 overflow-hidden bg-black">
+        <div class="relative flex overflow-hidden whitespace-nowrap w-full opacity-30">
+            <div class="flex animate-marquee w-max items-center font-serif italic text-2xl md:text-5xl text-offWhite tracking-[0.4em] uppercase" style="animation-direction: reverse;">
+                <span class="mx-16">三菱電機</span>
+                <span class="mx-16">CORONA</span>
+                <span class="mx-16">HITACHI</span>
+                <span class="mx-16">DAIKIN</span>
+                <!-- Loop -->
+                <span class="mx-16">三菱電機</span>
+                <span class="mx-16">CORONA</span>
+                <span class="mx-16">HITACHI</span>
+                <span class="mx-16">DAIKIN</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- AQUA BOOST PREMIUM 導線（シネマティック版） -->
+    <section class="py-40 px-6 bg-[#050505] relative overflow-hidden border-b border-white/5">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="max-w-6xl mx-auto reveal">
+            <a href="#" class="group relative block aspect-[21/9] overflow-hidden border border-white/10 rounded-sm">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=2000" class="w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-1000">
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
+                    <p class="font-serif italic text-gold text-lg mb-4 tracking-[0.6em] uppercase">Featured Project</p>
+                    <h2 class="font-serif-ja text-3xl md:text-6xl text-white tracking-[0.4em] mb-10 font-light">家中丸ごとオール浄水</h2>
+                    <div class="inline-block border border-offWhite text-offWhite px-12 py-4 text-[10px] tracking-[0.5em] uppercase group-hover:bg-offWhite group-hover:text-darkBg transition-all duration-500">
+                        AQUA BOOST PREMIUM
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 選ばれる理由（Reasons） -->
+    <section id="reasons" class="py-32 px-6 md:px-12 bg-offWhite text-darkBg">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="mb-32 reveal text-center">
+                <p class="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mb-6">Chapter 03 — Value</p>
+                <h2 class="font-serif italic text-4xl md:text-6xl tracking-widest">Why Us?</h2>
+            </div>
             
-            <div class="border-t border-darkBg">
-                <!-- 行1 -->
-                <div class="flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-darkBg hover:bg-darkBg/5 transition-colors px-4">
-                    <span class="font-sans text-xs tracking-[0.3em] uppercase text-accent mb-2 md:mb-0">Filtration System</span>
-                    <span class="font-serif-ja text-lg tracking-widest">高機能3層RO膜フィルター</span>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
+                <div class="reveal space-y-16">
+                    <div class="group border-b border-darkBg/20 pb-12">
+                        <span class="font-serif italic text-4xl text-accent/30 group-hover:text-accent transition-colors">01.</span>
+                        <h3 class="font-serif-ja text-2xl md:text-3xl mt-6 mb-6 tracking-widest">住まいに関わる幅広い対応力</h3>
+                        <p class="font-serif-ja text-darkBg/60 leading-loose tracking-wider">
+                            住宅設備・施工・メンテナンス・サポートまで、住まいに関するあらゆるニーズにワンストップで対応しています。
+                        </p>
+                    </div>
+                    <div class="group border-b border-darkBg/20 pb-12">
+                        <span class="font-serif italic text-4xl text-accent/30 group-hover:text-accent transition-colors">02.</span>
+                        <h3 class="font-serif-ja text-2xl md:text-3xl mt-6 mb-6 tracking-widest">迅速かつ柔軟な対応体制</h3>
+                        <p class="font-serif-ja text-darkBg/60 leading-loose tracking-wider">
+                            お客様の状況やご要望に合わせて、最適なご提案とスピーディーな対応を行います。
+                        </p>
+                    </div>
                 </div>
-                <!-- 行2 -->
-                <div class="flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-darkBg hover:bg-darkBg/5 transition-colors px-4">
-                    <span class="font-sans text-xs tracking-[0.3em] uppercase text-accent mb-2 md:mb-0">Bacterial Removal</span>
-                    <span class="font-serif text-xl tracking-widest">99.99%</span>
-                </div>
-                <!-- 行3 -->
-                <div class="flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-darkBg hover:bg-darkBg/5 transition-colors px-4">
-                    <span class="font-sans text-xs tracking-[0.3em] uppercase text-accent mb-2 md:mb-0">Chlorine Reduction</span>
-                    <span class="font-serif-ja text-lg tracking-widest">完全無害化処理</span>
-                </div>
-                <!-- 行4 -->
-                <div class="flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-darkBg hover:bg-darkBg/5 transition-colors px-4">
-                    <span class="font-sans text-xs tracking-[0.3em] uppercase text-accent mb-2 md:mb-0">Maintenance Cycle</span>
-                    <span class="font-serif text-xl tracking-widest">1 Year</span>
+                <div class="reveal space-y-16 pt-0 lg:pt-32">
+                    <div class="group border-b border-darkBg/20 pb-12">
+                        <span class="font-serif italic text-4xl text-accent/30 group-hover:text-accent transition-colors">03.</span>
+                        <h3 class="font-serif-ja text-2xl md:text-3xl mt-6 mb-6 tracking-widest">安心を支える継続サポート</h3>
+                        <p class="font-serif-ja text-darkBg/60 leading-loose tracking-wider">
+                            単発の対応にとどまらず、会員型サービスを通じて、住まいの安心を継続的に支えています。
+                        </p>
+                    </div>
+                    <div class="group border-b border-darkBg/20 pb-12">
+                        <span class="font-serif italic text-4xl text-accent/30 group-hover:text-accent transition-colors">04.</span>
+                        <h3 class="font-serif-ja text-2xl md:text-3xl mt-6 mb-6 tracking-widest">暮らしに寄り添う提案力</h3>
+                        <p class="font-serif-ja text-darkBg/60 leading-loose tracking-wider">
+                            設備導入だけでなく、お客様のライフスタイルに合わせた最適な住環境をご提案します。
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- フルスクリーン クオート（引用）セクション -->
-    <section class="py-48 px-6 bg-darkBg text-offWhite text-center relative overflow-hidden">
+    <!-- フルスクリーン クオート（代表挨拶） -->
+    <section id="greeting" class="py-48 px-6 bg-darkBg text-offWhite text-center relative overflow-hidden">
         <!-- ぼんやりとした背景の光 -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white rounded-full mix-blend-overlay opacity-5 blur-[100px] pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-white rounded-full mix-blend-overlay opacity-5 blur-[150px] pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto relative z-10 reveal">
-            <h3 class="font-serif italic text-3xl md:text-5xl lg:text-7xl leading-tight text-offWhite/90">
-                "It's not just about drinking water.<br>It's about how water touches<br>every part of your life."
+            <p class="font-sans text-[10px] tracking-[0.5em] uppercase text-accent mb-12">Representative</p>
+            <h3 class="font-serif-ja text-2xl md:text-3xl lg:text-4xl leading-[2.4] text-offWhite mb-16 tracking-widest">
+                住まいは、日々の暮らしを支える大切な基盤。<br>
+                私たちは、お客様にとって本当に必要とされる<br class="hidden md:block">
+                価値を提供し続けてまいります。
             </h3>
-            <p class="font-serif-ja mt-16 tracking-[0.6em] text-sm md:text-base text-accent">
-                水を変えることは、人生を変えること。
-            </p>
+            <div class="font-serif-ja text-base text-offWhite/40 leading-loose max-w-2xl mx-auto mb-16 space-y-8">
+                <p>TOTAL HOME JAPANのホームページをご覧いただき、誠にありがとうございます。住宅設備・施工・メンテナンス・サポートの一つひとつに真摯に向き合い、お客様に寄り添うパートナーであり続けます。</p>
+            </div>
+            <p class="font-serif-ja tracking-[0.8em] text-xl">代表取締役　小林 恒誠</p>
         </div>
     </section>
 
-    <!-- コンタクトフォーム（ダークテーマ） -->
-    <section class="py-32 px-6 bg-[#111111] border-t border-[#222]">
+    <!-- 企業情報 -->
+    <section class="py-32 px-6 md:px-12 bg-[#0d0d0d] border-y border-white/5">
+        <div class="max-w-[1200px] mx-auto reveal">
+            <h2 class="font-serif italic text-4xl mb-24 text-center tracking-[0.2em]">Corporate Profile.</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-32 gap-y-16 font-serif-ja text-base tracking-widest">
+                <div class="space-y-12">
+                    <div class="border-b border-white/10 pb-8">
+                        <p class="text-accent text-[10px] uppercase tracking-[0.4em] mb-4">Company</p>
+                        <p class="text-xl">株式会社トータルホームジャパン</p>
+                    </div>
+                    <div class="border-b border-white/10 pb-8">
+                        <p class="text-accent text-[10px] uppercase tracking-[0.4em] mb-4">Head Office</p>
+                        <p class="leading-relaxed">〒107-0027<br>東京都港区青山一丁目3号1番<br>アールキューブ青山3階</p>
+                    </div>
+                </div>
+                <div class="space-y-12">
+                    <div class="border-b border-white/10 pb-8">
+                        <p class="text-accent text-[10px] uppercase tracking-[0.4em] mb-4">Branches</p>
+                        <div class="space-y-8">
+                            <div>
+                                <p class="text-sm opacity-60 mb-2">熊本営業所</p>
+                                <p>〒861-8035 熊本県熊本市東区御領6-8-13</p>
+                            </div>
+                            <div>
+                                <p class="text-sm opacity-60 mb-2">福岡営業所</p>
+                                <p>〒811-1103 福岡県福岡市早良区四箇6-25-7</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-b border-white/10 pb-8">
+                        <p class="text-accent text-[10px] uppercase tracking-[0.4em] mb-4">Brands</p>
+                        <p class="text-sm opacity-60">三菱電機 / CORONA / HITACHI / DAIKIN</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせ（ダークミニマル） -->
+    <section id="contact" class="py-32 px-6 bg-darkBg">
         <div class="max-w-[720px] mx-auto reveal">
             <div class="text-center mb-24">
-                <h2 class="font-serif italic text-4xl mb-4 text-offWhite">Inquiry.</h2>
+                <h2 class="font-serif italic text-4xl mb-4 text-offWhite uppercase tracking-[0.2em]">Contact.</h2>
                 <p class="font-serif-ja text-sm tracking-[0.3em] leading-loose text-accent">
-                    理想の水を、あなたの設計図に。<br>
-                    導入のご相談を承ります。
+                    理想の住まいを、共に。
                 </p>
             </div>
 
             <form class="font-serif-ja text-offWhite space-y-12" onsubmit="event.preventDefault();">
-                <div class="border-b border-[#333] py-4">
-                    <label class="block tracking-widest text-xs text-accent mb-4 uppercase">Company</label>
-                    <input type="text" class="w-full bg-transparent text-lg outline-none placeholder-[#444] pb-2" placeholder="御社名">
+                <div class="border-b border-[#222] py-4 focus-within:border-accent transition-colors">
+                    <label class="block tracking-widest text-[10px] text-accent mb-4 uppercase">Company</label>
+                    <input type="text" class="w-full bg-transparent text-lg outline-none placeholder-[#111] pb-2" placeholder="御社名（任意）">
                 </div>
 
-                <div class="border-b border-[#333] py-4">
-                    <label class="block tracking-widest text-xs text-accent mb-4 uppercase">Name <span class="text-white ml-2">*</span></label>
-                    <input type="text" required class="w-full bg-transparent text-lg outline-none placeholder-[#444] pb-2" placeholder="ご担当者名">
+                <div class="border-b border-[#222] py-4 focus-within:border-accent transition-colors">
+                    <label class="block tracking-widest text-[10px] text-accent mb-4 uppercase">Name <span class="text-white ml-2">*</span></label>
+                    <input type="text" required class="w-full bg-transparent text-lg outline-none placeholder-[#111] pb-2" placeholder="ご担当者名">
                 </div>
 
-                <div class="border-b border-[#333] py-4">
-                    <label class="block tracking-widest text-xs text-accent mb-4 uppercase">Email <span class="text-white ml-2">*</span></label>
-                    <input type="email" required class="w-full bg-transparent text-lg outline-none placeholder-[#444] pb-2" placeholder="メールアドレス">
+                <div class="border-b border-[#222] py-4 focus-within:border-accent transition-colors">
+                    <label class="block tracking-widest text-[10px] text-accent mb-4 uppercase">Email <span class="text-white ml-2">*</span></label>
+                    <input type="email" required class="w-full bg-transparent text-lg outline-none placeholder-[#111] pb-2" placeholder="メールアドレス">
                 </div>
 
-                <div class="border-b border-[#333] py-4">
-                    <label class="block tracking-widest text-xs text-accent mb-4 uppercase">Message <span class="text-white ml-2">*</span></label>
-                    <textarea required class="w-full bg-transparent text-lg outline-none resize-none h-32 placeholder-[#444] pb-2" placeholder="お問い合わせ内容"></textarea>
+                <div class="border-b border-[#222] py-4 focus-within:border-accent transition-colors">
+                    <label class="block tracking-widest text-[10px] text-accent mb-4 uppercase">Message <span class="text-white ml-2">*</span></label>
+                    <textarea required class="w-full bg-transparent text-lg outline-none resize-none h-32 placeholder-[#111] pb-2" placeholder="お問い合わせ内容"></textarea>
                 </div>
                 
-                <div class="text-center pt-12">
-                    <button type="submit" class="border border-offWhite text-offWhite px-16 py-5 uppercase tracking-[0.3em] text-xs hover:bg-offWhite hover:text-darkBg transition duration-500 w-full md:w-auto">
+                <div class="text-center pt-16">
+                    <button type="submit" class="border border-offWhite text-offWhite px-20 py-5 uppercase tracking-[0.6em] text-[10px] hover:bg-offWhite hover:text-darkBg transition-all duration-700 w-full md:w-auto">
                         Submit
                     </button>
                 </div>
@@ -276,22 +438,26 @@
         </div>
     </section>
 
-    <!-- ミニマルフッター -->
-    <footer class="bg-darkBg text-offWhite pt-32 pb-12 px-6 border-t border-[#1a1a1a]">
+    <!-- フッター -->
+    <footer class="bg-darkBg text-offWhite pt-32 pb-12 px-6 border-t border-white/5">
         <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-            <a href="#" class="font-serif italic text-2xl tracking-widest hover:opacity-50 transition">
-                Aqua Boost.
-            </a>
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <a href="#" class="font-serif italic text-2xl tracking-widest hover:opacity-50 transition uppercase">
+                    TOTAL HOME JAPAN.
+                </a>
+                <p class="font-serif-ja text-[10px] tracking-[0.4em] text-accent uppercase">全国の住まいの安心を支え、暮らしの快適をつくる。</p>
+            </div>
             
-            <div class="flex flex-col md:flex-row items-center gap-8 font-sans text-[10px] tracking-[0.3em] uppercase text-accent">
-                <a href="#" class="hover:text-offWhite transition">Company</a>
-                <a href="#" class="hover:text-offWhite transition">Privacy</a>
-                <a href="#" class="hover:text-offWhite transition">Terms</a>
+            <div class="flex flex-col md:flex-row items-center gap-8 font-sans text-[9px] tracking-[0.4em] uppercase text-accent">
+                <a href="#mission" class="hover:text-offWhite transition">Mission</a>
+                <a href="#business" class="hover:text-offWhite transition">Business</a>
+                <a href="#greeting" class="hover:text-offWhite transition">Greeting</a>
+                <a href="#" class="hover:text-offWhite transition">Privacy Policy</a>
             </div>
         </div>
         <div class="max-w-[1200px] mx-auto text-center mt-24">
-            <p class="font-sans text-[9px] tracking-widest text-[#333] uppercase">
-                &copy; 2026 Aqua Boost. All Rights Reserved.
+            <p class="font-sans text-[9px] tracking-widest text-[#222] uppercase">
+                &copy; 2026 TOTAL HOME JAPAN. All Rights Reserved.
             </p>
         </div>
     </footer>
@@ -299,32 +465,24 @@
     <!-- スクリプト -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Lucideアイコンの初期化
             lucide.createIcons();
 
-            // スクロール時の要素出現アニメーション（Reveal）
+            // Revealアニメーション（スクロール追従ハイライト）
             const revealElements = document.querySelectorAll(".reveal");
-            
-            const revealOptions = {
-                root: null,
-                rootMargin: "0px 0px -100px 0px", // 画面下部から100pxの位置で発火
-                threshold: 0.1
-            };
-
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("active");
-                        // 一度表示されたら監視を解除（スクロールして戻っても消えない）
-                        observer.unobserve(entry.target);
                     }
                 });
-            }, revealOptions);
+            }, { threshold: 0.1 });
 
-            revealElements.forEach(element => {
-                revealObserver.observe(element);
-            });
+            revealElements.forEach(element => revealObserver.observe(element));
         });
     </script>
-<a href="index.html" style="position:fixed;bottom:30px;right:30px;z-index:9999;display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.6);color:white;padding:12px 24px;border-radius:9999px;text-decoration:none;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.15em;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.2);transition:all 0.3s cubic-bezier(0.16, 1, 0.3, 1);box-shadow:0 10px 30px rgba(0,0,0,0.3);" onmouseover="this.style.background='rgba(0,0,0,0.9)';this.style.transform='translateY(-5px)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(0,0,0,0.6)';this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.2)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>トップページへ</a></body>
+
+    <!-- デザイン一覧へ戻るボタン（全ページ共通） -->
+    <a href="index.html" style="position:fixed;bottom:30px;right:30px;z-index:9999;display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.6);color:white;padding:12px 24px;border-radius:9999px;text-decoration:none;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.15em;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.2);transition:all 0.3s cubic-bezier(0.16, 1, 0.3, 1);box-shadow:0 10px 30px rgba(0,0,0,0.3);" onmouseover="this.style.background='rgba(0,0,0,0.9)';this.style.transform='translateY(-5px)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(0,0,0,0.6)';this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.2)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>デザイン一覧へ戻る</a>
+
+</body>
 </html>
